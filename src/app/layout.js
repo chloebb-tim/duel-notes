@@ -22,7 +22,20 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <header className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200 bg-white px-4 py-3 shadow-sm">
+          <div className="mx-auto flex h-12 max-w-6xl items-center justify-between gap-4">
+            <a href="/" className="hover:text-blue-600">Logo</a>
+            <nav className="flex items-center gap-4 text-sm font-medium">
+              <a href="/voter" className="hover:text-blue-600">Voter</a>
+              <a href="/duels" className="hover:text-blue-600">Duels</a>
+            </nav>
+            <div className="text-xl" aria-label="profile">👤</div>
+          </div>
+        </header>
+
+        <main className="flex-1 pt-16">{children}</main>
+      </body>
     </html>
   );
 }
