@@ -1,0 +1,54 @@
+.palmares {
+    background-image: url(/Images/jpg/decor_palmares.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    height: 700px;
+    padding: 300px 100px 100px 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    gap: 50px;
+    color: black;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.place2,
+.place3,
+.place1 {
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    width: 500px;
+    background-color: white;
+    border-radius: 10%;
+    align-items: center;
+
+}
+
+.place1 {
+    height: 350px;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.ligne {
+    border-bottom: 2px dotted gray;
+    rotate: calc(90deg);
+    width: 50px;
+}
+
+h2 {
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 20px;
+}

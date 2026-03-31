@@ -3,5 +3,18 @@
     background-repeat: no-repeat;
     /* background-position: bottom; */
     background-size: cover;
-    height: 200px;
+    height: 400px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 70px;
+}
+
+.titre {
+    font-size: 60px;
+}
+
+.alexandrin {
+    width: 65%;
 }
