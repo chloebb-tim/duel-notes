@@ -4,7 +4,7 @@ const Palmares = ({ }) => {
     return (
         <div className="palmares">
             <div className="place2">
-                {/* <img className="etoile2" src="/Images/png/etoile_2.png" alt="etoile" /> */}
+                <img className="etoile2" src="/Images/png/etoile_2.png" alt="etoile" />
                 <div>
                     <h2>Nom du chanteur</h2>
                     <div className="info">
@@ -18,7 +18,7 @@ const Palmares = ({ }) => {
                 </div>
             </div>
             <div className="place1">
-                {/* <img className="etoile1" src="/Images/png/etoile_1.png" alt="etoile" /> */}
+                <img className="etoile1" src="/Images/png/etoile_1.png" alt="etoile" />
                 <div>
                     <h2>Nom du chanteur</h2>
                     <div className="info">
@@ -32,7 +32,7 @@ const Palmares = ({ }) => {
                 </div>
             </div>
             <div className="place3">
-                {/* <img className="etoile3" src="/Images/png/etoile_3.png" alt="etoile" /> */}
+                <img className="etoile3" src="/Images/png/etoile_3.png" alt="etoile" />
                 <div>
                     <h2>Nom du chanteur</h2>
                     <div className="info">

@@ -1,17 +1,18 @@
 .header {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* background-color: var(--bleu); */
+    background-color: var(--bleu);
     color: white;
     /* box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3); */
     padding: 30px 100px 50px 70px;
 
     /*Trouver pourquoi il reste un petit espace sur la droite et la gauche*/
-    background-image: url(/Images/svg/vague.svg);
+    /* background-image: url(/Images/svg/vague.svg);
     background-repeat: repeat;
     background-position: bottom;
-    background-size: cover;
+    background-size: cover; */
 }
 
 .menu {
@@ -37,10 +38,35 @@
 }
 
 .tige {
-    height: 300px;
+    height: 350px;
     position: absolute;
-    right: 54;
-    top: -32;
+    right: 32;
+    top: -15;
+    rotate: calc(-10deg);
+}
+
+
+/*Vague fait à l'aide de Shape Divider App*/
+.custom-shape-divider-top-1774999941 {
+    position: absolute;
+    top: 140;
+    left: 0;
+    width: 100%;
+    /* height: 150px; */
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-top-1774999941 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 115px;
+}
+
+.custom-shape-divider-top-1774999941 .shape-fill {
+    fill: var(--bleu);
 }
 
 
