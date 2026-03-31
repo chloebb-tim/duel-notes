@@ -1,0 +1,46 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: var(--bleu); */
+    color: white;
+    /* box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3); */
+    padding: 30px 100px 50px 70px;
+
+    /*Trouver pourquoi il reste un petit espace sur la droite et la gauche*/
+    background-image: url(/Images/svg/vague.svg);
+    background-repeat: repeat;
+    background-position: bottom;
+    background-size: cover;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+.navigation {
+    display: flex;
+    gap: 30px;
+    font-size: 25px;
+}
+
+.logo img {
+    height: 70px;
+}
+
+.profile {
+    height: 30px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.tige {
+    height: 300px;
+    position: absolute;
+    right: 54;
+    top: -32;
+}
+
+

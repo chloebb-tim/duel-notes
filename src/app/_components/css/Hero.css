@@ -1,0 +1,7 @@
+.instructions {
+    background-image: url(/Images/jpg/image_venyl.jpg);
+    background-repeat: no-repeat;
+    /* background-position: bottom; */
+    background-size: cover;
+    height: 200px;
+}

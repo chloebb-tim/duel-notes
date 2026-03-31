@@ -1,6 +1,8 @@
-const Hero = ({}) => {
-    return(
-        <div className="pt-12">ici sera un alexandrin</div>
+import "./css/Hero.css";
+
+const Hero = ({ }) => {
+    return (
+        <div className="instructions">ici sera un alexandrin</div>
     )
 }
 
