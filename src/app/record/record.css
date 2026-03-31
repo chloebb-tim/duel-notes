@@ -1,0 +1,123 @@
+.record-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  padding: 20px;
+}
+
+.song-selection {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.song-selection label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.song-select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 16px;
+  min-width: 150px;
+}
+
+.mic-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0; 
+  padding: 20px;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  color: #666;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+}
+
+.mic-toggle:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.mic-toggle:active {
+  transform: scale(0.95);
+}
+
+.mic-toggle .material-icons {
+  font-size: 48px;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.mic-toggle:hover .material-icons {
+  color: #333;
+}
+
+.mic-toggle.recording {
+  background-color: #ff4444;
+  color: white;
+  animation: pulse 1.5s infinite;
+}
+
+.mic-toggle.recording .material-icons {
+  color: white;
+}
+
+.mic-toggle.recording:hover {
+  background-color: #cc3333;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 2px 8px rgba(255, 68, 68, 0.3);
+  }
+  50% {
+    box-shadow: 0 2px 8px rgba(255, 68, 68, 0.6);
+  }
+  100% {
+    box-shadow: 0 2px 8px rgba(255, 68, 68, 0.3);
+  }
+}
+
+.playback {
+  display: block;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 400px;
+}
+
+.publish-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.publish-button:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+.publish-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

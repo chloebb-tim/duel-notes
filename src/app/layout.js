@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Head from "next/head";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,6 +23,9 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <Head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+      </Head>
       <body className="min-h-full flex flex-col">
         <header className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200 bg-white px-4 py-3 shadow-sm">
           <div className="mx-auto flex h-12 max-w-6xl items-center justify-between gap-4">
