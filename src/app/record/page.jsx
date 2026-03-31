@@ -1,16 +1,30 @@
-'use client';
+"use client";
 
-import './record.css';
-import { useState, useRef } from 'react';
+import "./record.css";
+import { useState, useRef, useEffect } from "react";
 
 const PageRecord = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
-  const [songChoice, setSongChoice] = useState('chanson1');
+  const [songChoice, setSongChoice] = useState("chanson1");
   const [isUploading, setIsUploading] = useState(false);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const mediaRecorderRef = useRef(null);
   const audioRef = useRef(null);
+  const musicRef = useRef(null);
+  const SONGS = {
+    chanson1: "/chanson1.mp3",
+    chanson2: "/chanson2.mp3",
+  };
+  useEffect(() => {
+    if (!musicRef.current) return;
 
+    const audio = musicRef.current;
+    audio.src = SONGS[songChoice];
+    audio.currentTime = 0;
+    audio.pause();
+    setIsMusicPlaying(false);
+  }, [songChoice]);
   const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -23,20 +37,20 @@ const PageRecord = () => {
       };
 
       mediaRecorder.onstop = () => {
-        const blob = new Blob(chunks, { type: 'audio/wav' });
+        const blob = new Blob(chunks, { type: "audio/wav" });
         setAudioBlob(blob);
         const audioURL = URL.createObjectURL(blob);
         if (audioRef.current) {
           audioRef.current.src = audioURL;
         }
-        stream.getTracks().forEach(track => track.stop());
+        stream.getTracks().forEach((track) => track.stop());
       };
 
       mediaRecorder.start();
       setIsRecording(true);
     } catch (error) {
-      console.error('Error accessing microphone:', error);
-      alert('Could not access microphone. Please check permissions.');
+      console.error("Error accessing microphone:", error);
+      alert("Could not access microphone. Please check permissions.");
     }
   };
 
@@ -55,6 +69,24 @@ const PageRecord = () => {
     }
   };
 
+  const handleMusicToggle = async () => {
+    if (!musicRef.current) return;
+
+    const audio = musicRef.current;
+
+    if (audio.paused) {
+      try {
+        await audio.play();
+        setIsMusicPlaying(true);
+      } catch (error) {
+        console.error("Unable to play music:", error);
+      }
+    } else {
+      audio.pause();
+      setIsMusicPlaying(false);
+    }
+  };
+
   const hiddenInputRef = useRef(null);
   const uploadButtonRef = useRef(null);
 
@@ -63,19 +95,21 @@ const PageRecord = () => {
 
     setIsUploading(true);
     try {
-      const file = new File([audioBlob], `recording-${Date.now()}.wav`, { type: 'audio/wav' });
+      const file = new File([audioBlob], `recording-${Date.now()}.wav`, {
+        type: "audio/wav",
+      });
 
       const formData = new FormData();
-      formData.append('files', file);
+      formData.append("files", file);
 
       console.log("Starting upload...");
-      const uploadResponse = await fetch('/api/upload-audio', {
-        method: 'POST',
+      const uploadResponse = await fetch("/api/upload-audio", {
+        method: "POST",
         body: formData,
       });
 
       console.log("Upload response status:", uploadResponse.status);
-      
+
       if (!uploadResponse.ok) {
         const errorData = await uploadResponse.text();
         console.error("Upload error:", errorData);
@@ -85,40 +119,44 @@ const PageRecord = () => {
       const uploadedFiles = await uploadResponse.json();
       console.log("Upload successful:", uploadedFiles);
 
-      if (!uploadedFiles || !Array.isArray(uploadedFiles) || !uploadedFiles[0]) {
-        throw new Error('Invalid upload response');
+      if (
+        !uploadedFiles ||
+        !Array.isArray(uploadedFiles) ||
+        !uploadedFiles[0]
+      ) {
+        throw new Error("Invalid upload response");
       }
 
       const { url, key } = uploadedFiles[0];
 
       console.log("Saving to database...");
-      const dbResponse = await fetch('/api/recordings', {
-        method: 'POST',
+      const dbResponse = await fetch("/api/recordings", {
+        method: "POST",
         body: JSON.stringify({
           songChoice: songChoice,
           voiceUrl: url,
           voiceUploadthingKey: key,
         }),
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
 
       console.log("Database response status:", dbResponse.status);
 
       if (dbResponse.ok) {
-        alert('Recording published successfully!');
+        alert("Recording published successfully!");
         setAudioBlob(null);
         if (audioRef.current) {
-          audioRef.current.src = '';
+          audioRef.current.src = "";
         }
       } else {
         const errorData = await dbResponse.json();
-        throw new Error(errorData.error || 'Failed to save recording');
+        throw new Error(errorData.error || "Failed to save recording");
       }
     } catch (error) {
-      console.error('Error publishing recording:', error);
-      alert('Error: ' + error.message);
+      console.error("Error publishing recording:", error);
+      alert("Error: " + error.message);
     } finally {
       setIsUploading(false);
     }
@@ -127,39 +165,47 @@ const PageRecord = () => {
   return (
     <div className="pt-12 record-container">
       <div className="song-selection">
-        <label htmlFor="songChoice">Choose a song:</label>
+        <label htmlFor="songChoice">choix de chansons:</label>
         <select
           id="songChoice"
           value={songChoice}
           onChange={(e) => setSongChoice(e.target.value)}
           className="song-select"
         >
-          <option value="chanson1">Song 1</option>
-          <option value="chanson2">Song 2</option>
+          <option value="chanson1">chanson 1</option>
+          <option value="chanson2">chanson 2</option>
         </select>
+        <button
+          type="button"
+          className="music-control-button"
+          onClick={handleMusicToggle}
+        >
+        start
+        </button>
       </div>
 
       <button
-        className={`mic-toggle ${isRecording ? 'recording' : ''}`}
-        id='micr'
+        className={`mic-toggle ${isRecording ? "recording" : ""}`}
+        id="micr"
         onClick={handleButtonClick}
       >
         <span className="material-icons">
-          {isRecording ? 'stop' : 'mic'}
+          {/* {isRecording ? 'stop' : 'mic'} */}
+          mic
         </span>
       </button>
+      <audio ref={musicRef} preload="auto" hidden />
+      <audio className="playback" ref={audioRef} controls></audio>
 
-      <audio className='playback' ref={audioRef} controls></audio>
-
-      {audioBlob && !isRecording && (
-        <button
-          className="publish-button"
-          onClick={handlePublish}
-          disabled={isUploading}
-        >
-          {isUploading ? 'Publishing...' : 'Publish Recording'}
-        </button>
-      )}
+      {/* {audioBlob && !isRecording && ( */}
+      {/* <button
+        className="publish-button"
+        onClick={handlePublish}
+        disabled={isUploading}
+      >
+        {isUploading ? "Publishing..." : "Publish Recording"}
+      </button> */}
+      {/* )} */}
     </div>
   );
 };
