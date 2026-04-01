@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #19466D;
+  --background: var(--bleu_fonce);
   --foreground: white;
 
   /* Palette de couleur officiel */

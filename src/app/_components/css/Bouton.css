@@ -1,0 +1,10 @@
+.btn {
+    background-color: var(--orange);
+    padding: 15px 45px;
+    border-radius: 50px;
+}
+
+.btn:hover {
+    background-color: #b44732;
+
+}
