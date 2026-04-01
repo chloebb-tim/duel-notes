@@ -30,7 +30,7 @@ const DuelsVoter = ({ }) => {
                         <div className="infoChanteur">
                             <img className="play" src="/Images/svg/play_bleu.svg" alt="Icon d'un play" />
                             <img className="venyl" src="/Images/svg/venyl.svg" alt="Icon d'un Venyl" />
-                            <div>
+                            <div className="information">
                                 <p>Date</p>
                                 <p>Nom du chanteur 01</p>
                                 <div className="like">
@@ -38,12 +38,12 @@ const DuelsVoter = ({ }) => {
                                     <p>Nb likes</p>
                                 </div>
                             </div>
-                            <div className="ligne"></div>
                         </div>
+                            <div className="ligne"></div>
                         <div className="infoChanteur">
                             <img className="play" src="/Images/svg/play_bleu.svg" alt="Icon d'un play" />
                             <img className="venyl" src="/Images/svg/venyl.svg" alt="Icon d'un Venyl" />
-                            <div>
+                            <div className="information">
                                 <p>Date</p>
                                 <p>Nom du chanteur 02</p>
                                 <div className="like">

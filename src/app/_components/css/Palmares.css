@@ -1,10 +1,9 @@
 .palmares {
     background-image: url(/Images/jpg/decor_palmares.jpg);
     background-repeat: no-repeat;
-    background-position: bottom;
+    background-position: top;
     background-size: cover;
-    height: 700px;
-    padding: 300px 100px 100px 100px;
+    padding: 250px 100px 100px 100px;
 
     display: flex;
     justify-content: center;
@@ -16,10 +15,11 @@
 .place2,
 .place3,
 .place1 {
+    position: relative;
     display: flex;
     justify-content: center;
     height: 300px;
-    width: 500px;
+    width: 600px;
     background-color: white;
     border-radius: 10%;
     align-items: center;
@@ -37,9 +37,18 @@
     margin: 0px 25px;
 }
 
+.info_palmares {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    /* justify-content: center; */
+    text-align: center;
+}
+
 .separe {
-    border-left: 2px dotted gray; 
-    height: 70px;             
+    border-left: 2px dotted gray;
+    height: 70px;
 }
 
 h2 {
@@ -52,21 +61,14 @@ p {
     font-size: 20px;
 }
 
-.etoile2 {
-   position: absolute;
-   bottom: -50;
-   left: 312;
-}
-
-.etoile1 {
-   position: absolute;
-   bottom: 0;
-   left: 875;
-}
-
+.etoile2,
+.etoile1,
 .etoile3 {
-   position: absolute;
-   bottom: -50;
-   left: 1440;
+    position: absolute;
+    top: -90;
+    left: 125;
 }
 
+.play_palmares {
+    width: 35px;
+}

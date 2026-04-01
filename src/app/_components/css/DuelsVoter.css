@@ -2,14 +2,14 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin: 80px 45px 45px 45px;
+    margin: 80px 100px 45px 100px;
 }
 
-.gridVote {
+/* .gridVote {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-}
+} */
 
 .listeVote {
     display: flex;
@@ -23,7 +23,7 @@
 
 .duelsVote {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     gap: 25px;
 }
 
@@ -32,6 +32,10 @@
     justify-content: center;
     align-items: center;
     gap: 30px;
+}
+
+.information {
+    min-width: 45px;
 }
 
 .ligne {
