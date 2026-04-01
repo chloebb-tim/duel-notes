@@ -5,9 +5,8 @@
     align-items: center;
     background-color: var(--bleu);
     color: white;
-    /* box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3); */
-    padding: 30px 100px 50px 70px;
-
+    padding: 50px 100px;
+    height: 120px;
     /*Trouver pourquoi il reste un petit espace sur la droite et la gauche*/
     /* background-image: url(/Images/svg/vague.svg);
     background-repeat: repeat;
@@ -40,16 +39,16 @@
 .tige {
     height: 350px;
     position: absolute;
-    right: 32;
-    top: -15;
-    rotate: calc(-10deg);
+    right: 45;
+    top: -55;
+    /* rotate: calc(-5deg); */
 }
 
 
 /*Vague fait à l'aide de Shape Divider App*/
 .custom-shape-divider-top-1774999941 {
     position: absolute;
-    top: 140;
+    top: 115;
     left: 0;
     width: 100%;
     /* height: 150px; */
@@ -62,7 +61,7 @@
     position: relative;
     display: block;
     width: calc(100% + 1.3px);
-    height: 115px;
+    height: 75px;
 }
 
 .custom-shape-divider-top-1774999941 .shape-fill {
