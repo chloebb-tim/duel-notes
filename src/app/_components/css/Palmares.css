@@ -42,13 +42,12 @@
     flex-direction: column;
     gap: 15px;
     align-items: center;
-    /* justify-content: center; */
     text-align: center;
 }
 
 .separe {
     border-left: 2px dotted gray;
-    height: 70px;
+    height: 100px;
 }
 
 h2 {
