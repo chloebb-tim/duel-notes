@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 
 import "./css/Header.css";
+import "./css/Bouton.css";
+import Signout from "../signout/page.jsx";
 
 const Header = () => {
   return (
@@ -23,18 +25,29 @@ const Header = () => {
       </div>
 
       <Link className="logo" href="/"><img src="/Images/svg/logo.svg" alt="Logo" /></Link>
+      <div className="temps">
+        TIMEUR
+      </div>
       <div className="menu">
         <nav className="navigation">
-          <Link href="/voter">Voter</Link>
-          <Link href="/duels">Duels</Link>
+          <Link className="navhover" href="/voter">Voter</Link>
+          <Link className="navhover" href="/duels">Duels</Link>
         </nav>
         {/* <div aria-label="profile"> */}
-        <img className="profile" aria-label="profile" src="/Images/svg/icon_profil_noir.svg" alt="Icon du profil" />
-        <img className="tige" src="/Images/svg/tige.svg" alt="Tige" />
+        {/* <img className="profile" aria-label="profile" src="/Images/svg/icon_profil_noir.svg" alt="Icon du profil" /> */}
         {/* </div> */}
+
+        <div className="profil">
+          <details>
+            <summary ><img className="profile" aria-label="profile" src="/Images/svg/icon_profil_noir.svg" alt="Icon du profil" /></summary>
+
+            <div className="menuprofil btnDeconnexion">
+              <Signout />
+            </div>
+          </details>
+        </div>
+        <img className="tige" src="/Images/svg/tige.svg" alt="Tige" />
       </div>
-
-
     </header>
   );
 };

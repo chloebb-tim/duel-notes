@@ -21,21 +21,38 @@
     font-size: 25px;
 }
 
+.navhover:hover {
+    color: var(--orange);
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+}
+
 .logo img {
     height: 70px;
 }
 
 .profile {
-    height: 30px;
+    height: 40px;
     cursor: pointer;
-    z-index: 1;
+    position: relative;
+    z-index: 10;
+}
+
+.profil details {
+    position: relative;
+}
+
+.menuprofil {
+    position: absolute;
+    top: 100px; 
+    right: -40;
 }
 
 .tige {
     height: 350px;
     position: absolute;
-    right: 45;
-    top: -55;
+    right: 50;
+    top: -45;
     pointer-events: none;
 }
 

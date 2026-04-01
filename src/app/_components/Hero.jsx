@@ -1,10 +1,65 @@
+"use client";
 import "./css/Hero.css";
 
+import React from 'react'
+import { useEffect } from "react";
+import { gsap } from "gsap";
+
 const Hero = ({ }) => {
+
+    useEffect(() => {
+        const tl = gsap.timeline({});
+        const alexandrin = document.querySelector(".alexandrin");
+
+        tl.to(alexandrin, {
+            y: 100,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out"
+        });
+        tl.to(alexandrin, {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out"
+        });
+    }, []);
+
     return (
         <div className="instructions">
             <h1 className="titre">Instructions</h1>
-            <p className="alexandrin">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti pariatur voluptatibus maiores repudiandae minus, labore error ipsam incidunt eveniet! Vel vero doloribus beatae voluptate nesciunt modi soluta dicta, labore nisi!</p>
+            <div className="alexandrin">
+                <p >
+                    C’est une arène féroce, ici la voix fait loi <br />
+
+                    Même musique pour deux, mais chacun sa version,<br />
+
+                    Rejoins le Duel des Notes, chante avec passion<br />
+
+                    Pour réussir à gagner, deux choix s’offrent à toi<br />
+                </p>
+                <br />
+                <p >
+                    Trouve un duel qui t’inspire, puis fais-le à ta façon<br />
+
+                    Avec les mêmes paroles posées sur le même son<br />
+
+                    Tu peux aussi lancer ton propre défi vocal<br />
+
+                    Donne le meilleur de toi et attends ton rival<br />
+
+                </p>
+                <br />
+                <p >
+                    Trouve un duel qui t’inspire, puis fais-le à ta façon<br />
+
+                    Avec les mêmes paroles posées sur le même son<br />
+
+                    Tu peux aussi lancer ton propre défi vocal<br />
+
+                    Donne le meilleur de toi et attends ton rival<br />
+                </p>
+            </div>
         </div>
     )
 }
