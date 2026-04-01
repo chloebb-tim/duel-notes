@@ -1,12 +1,12 @@
 .instructions {
     background-image: url(/Images/jpg/image_venyl.jpg);
     background-repeat: no-repeat;
-    /* background-position: bottom; */
     background-size: cover;
-    height: 400px;
+    height: 500px;
 
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 25px;
     padding: 70px;
 }
