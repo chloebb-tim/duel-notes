@@ -62,12 +62,6 @@ h1 {
     width: 35px;
 }
 
-.info {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
 .filtre {
     width: 200px;
     text-align: center;
