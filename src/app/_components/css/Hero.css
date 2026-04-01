@@ -1,0 +1,20 @@
+.instructions {
+    background-image: url(/Images/jpg/image_venyl.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+    padding: 70px;
+}
+
+.titre {
+    font-size: 60px;
+}
+
+.alexandrin {
+    width: 65%;
+}

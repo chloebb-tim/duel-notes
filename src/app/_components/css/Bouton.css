@@ -1,0 +1,12 @@
+.btn {
+    background-color: var(--orange);
+    padding: 15px 45px;
+    border-radius: 20px;
+    list-style: none;
+    font-size: 20px;
+}
+
+.btn:hover {
+    background-color: #b44732;
+
+}

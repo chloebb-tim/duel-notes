@@ -1,0 +1,88 @@
+.PageVoter {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 80px 45px 45px 45px;
+}
+
+.gridVote {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.listeVote {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    background-color: var(--bleu_marine);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    padding: 35px;
+    border-radius: 50px;
+}
+
+.duelsVote {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.infoChanteur {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.ligne {
+    border-left: 2px dotted white;
+    height: 100px;
+    margin: 0px 25px;
+}
+
+.play {
+    width: 35px;
+}
+
+.venyl {
+    width: 100px;
+}
+
+h1 {
+    font-size: 25px;
+}
+
+.like {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.coeur {
+    width: 35px;
+}
+
+.filtre {
+    width: 200px;
+    text-align: center;
+}
+
+.menuFiltre {
+    margin-top: 10px;
+    background: white;
+    color: black;
+    border-radius: 20px;
+    padding: 15px;
+    width: 200px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.menuFiltre p:hover {
+    color: var(--orange);
+}
+
+.separateur {
+    border-bottom: 2px dotted rgb(190, 190, 190);
+    margin: 10px 0;
+}
