@@ -1,7 +1,8 @@
 import "server-only";
 import { db } from "@/db";
 import { duelsTable, enregistrements } from "@/db/schemas/schema";
-import { desc, eq, isNull } from "drizzle-orm";
+import { user } from "@/db/schemas/auth-schema";
+import { desc, eq, isNull, isNotNull } from "drizzle-orm";
 
 // export const enregistrerNouveau = async (songChoice, chanteur1id, duelId) => {
 //   return db.insert(enregistrements).values({
@@ -75,4 +76,53 @@ export async function getDuelsIncomplets() {
     .from(duelsTable)
     .where(isNull(duelsTable.chanteur2id))
     .orderBy(desc(duelsTable.id));
+}
+
+export async function getDuelscomplets() {
+  const duels = await db.query.duelsTable.findMany({
+    where: isNotNull(duelsTable.chanteur2id),
+    orderBy: desc(duelsTable.id),
+    with: {
+      premierChanteur: true,
+      deuxiemeChanteur: true,
+    },
+  });
+
+  // récupérer les noms des users pour chaque enregistrement
+  const duelsAvecNoms = await Promise.all(
+    duels.map(async (duel) => {
+      const user1 = duel.premierChanteur
+        ? await db
+            .select({ name: user.name })
+            .from(user)
+            .where(eq(user.id, duel.premierChanteur.userId))
+            .limit(1)
+        : [];
+      const user2 = duel.deuxiemeChanteur
+        ? await db
+            .select({ name: user.name })
+            .from(user)
+            .where(eq(user.id, duel.deuxiemeChanteur.userId))
+            .limit(1)
+        : [];
+
+      return {
+        ...duel,
+        premierChanteur: duel.premierChanteur
+          ? {
+              ...duel.premierChanteur,
+              userName: user1[0]?.name ?? duel.premierChanteur.userId ?? "Inconnu",
+            }
+          : null,
+        deuxiemeChanteur: duel.deuxiemeChanteur
+          ? {
+              ...duel.deuxiemeChanteur,
+              userName: user2[0]?.name ?? duel.deuxiemeChanteur.userId ?? "Inconnu",
+            }
+          : null,
+      };
+    })
+  );
+
+  return duelsAvecNoms;
 }
