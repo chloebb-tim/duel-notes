@@ -48,8 +48,6 @@ const Header = () => {
         </div>
         <img className="tige" src="/Images/svg/tige.svg" alt="Tige" />
       </div>
-
-
     </header>
   );
 };
