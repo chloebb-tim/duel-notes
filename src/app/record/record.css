@@ -1,124 +1,196 @@
-.record-container {
+.record-page {
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #91c3e4;
+  overflow: hidden;
+}
+
+.record-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  background: #082135;
+}
+
+.song-selection-box {
+  max-width: 520px;
+  width: 100%;
+}
+
+.song-selection-box label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.song-selection-inline {
+  display: flex;
+  gap: 12px;
+
+
+
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.song-select {
+  width: 240px;
+  min-width: 240px;
+  max-width: 240px;
+  padding: 12px 16px;
+  border: none;
+
+  background: #d7573c;
+  color: white;
+  font-size: 16px;
+}
+
+.song-select:focus {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+.record-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.record-main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 0;
+  overflow: auto;
+  gap: 16px;
+}
+
+.record-left {
+  background: #91c3e4;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 50vh;
-  padding: 20px;
+  gap: 22px;
+  padding: 30px 20px;
+  position: relative;
 }
 
-.song-selection {
-  margin-bottom: 20px;
-  text-align: center;
+.record-right {
+  background: #19466d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
 }
 
-.song-selection label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-  color: #333;
+.lyrics-box h2 {
+  color: white;
+  font-size: 34px;
+  font-weight: 300;
+  margin: 0;
 }
 
-
-.song-select {
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: white;
-  font-size: 16px;
-  min-width: 150px;
-}
-
-/* .mic-toggle {
+.mic-toggle {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 0; 
-  padding: 20px;
+  font-size: 0;
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 84px;
+  height: 84px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #f0f0f0;
   color: #666;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
-} */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
 
-/* .mic-toggle:hover {
-  background-color: #e0e0e0;
+.mic-toggle:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  
 }
 
-.mic-toggle:active {
-  transform: scale(0.95);
-} */
 
-/* .mic-toggle .material-icons {
-  font-size: 48px;
+
+.mic-toggle .material-icons {
+  font-size: 40px;
   color: #666;
-  transition: color 0.3s ease;
-}
-
-.mic-toggle:hover .material-icons {
-  color: #333;
 }
 
 .mic-toggle.recording {
-  background-color: #ff4444;
-  color: white;
-  animation: pulse 1.5s infinite;
+  background-color: #d7573c;
 }
 
 .mic-toggle.recording .material-icons {
   color: white;
 }
 
-.mic-toggle.recording:hover {
-  background-color: #cc3333;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 2px 8px rgba(255, 68, 68, 0.3);
-  }
-  50% {
-    box-shadow: 0 2px 8px rgba(255, 68, 68, 0.6);
-  }
-  100% {
-    box-shadow: 0 2px 8px rgba(255, 68, 68, 0.3);
-  }
-} */
-
 .playback {
-  display: block;
-  margin: 20px auto;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
 }
 
-/* .publish-button {
-  background-color: #4CAF50;
-  color: white;
+.publish-button,
+.music-control-button {
   border: none;
-  padding: 12px 24px;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 500;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
-} */
+  transition: 0.2s ease;
+}
 
-/* .publish-button:hover:not(:disabled) {
-  background-color: #45a049;
-} */
+.publish-button {
+  background-color: #d7573c;
+  color: white;
+}
+
+.publish-button:hover:not(:disabled) {
+  opacity: 0.92;
+}
 
 .publish-button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
+}
+
+.music-control-button {
+  background-color: #5d98c0;
+  color: white;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 50%;
+}
+
+
+
+.countdown-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 33, 53, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 72px;
+  font-weight: 700;
+  color: white;
+  z-index: 5;
 }
