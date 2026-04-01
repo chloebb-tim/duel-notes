@@ -30,7 +30,7 @@ const SignInClient = () => {
       formAction={submitAction}
       ctaTitle="Se connecter"
     >
-      <p>
+      <p className="compteText">
         Vous voulez créer un compte ?{" "}
         <a href="/signup">
           Inscrivez-vous
