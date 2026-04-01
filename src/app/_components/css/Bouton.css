@@ -1,7 +1,8 @@
 .btn {
     background-color: var(--orange);
     padding: 15px 45px;
-    border-radius: 50px;
+    border-radius: 20px;
+    list-style: none;
 }
 
 .btn:hover {
