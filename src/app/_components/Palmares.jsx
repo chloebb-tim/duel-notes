@@ -12,7 +12,7 @@ const Palmares = ({ }) => {
                             <p>Chansons</p>
                             <p>Nb likes</p>
                         </div>
-                        <div className="ligne"></div>
+                        <div className="separe"></div>
                         <img src="/Images/svg/play_2.svg" alt="icon_Play" />
                     </div>
                 </div>
@@ -26,7 +26,7 @@ const Palmares = ({ }) => {
                             <p>Chansons</p>
                             <p>Nb likes</p>
                         </div>
-                        <div className="ligne"></div>
+                        <div className="separe"></div>
                         <img src="/Images/svg/play_1.svg" alt="icon_Play" />
                     </div>
                 </div>
@@ -40,7 +40,7 @@ const Palmares = ({ }) => {
                             <p>Chansons</p>
                             <p>Nb likes</p>
                         </div>
-                        <div className="ligne"></div>
+                        <div className="separe"></div>
                         <img src="/Images/svg/play_3.svg" alt="icon_Play" />
                     </div>
                 </div>
