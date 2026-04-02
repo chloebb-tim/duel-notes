@@ -1,4 +1,6 @@
-body {
+.signup-page {
+  min-height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,12 +10,12 @@ body {
   background-size: cover;
 }
 
-main {
+.signup-page > div {
   display: flex;
   align-items: center;
 }
 
-form {
+.signup-page form {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -27,7 +29,7 @@ form {
   color: black;
 }
 
-input {
+.signup-page input {
   display: block;
   margin: 10px 0;
   padding: 10px;
@@ -37,20 +39,20 @@ input {
   border-radius: 4px;
 }
 
-button {
+.signup-page button {
   width: 50%;
   color: white;
 }
 
-a {
+.signup-page a {
   color: var(--bleu);
   text-decoration: none;
 }
 
-a:hover {
+.signup-page a:hover {
   color: var(--orange);
 }
 
-h2 {
+.signup-page h2 {
   font-size: 55px;
 }
