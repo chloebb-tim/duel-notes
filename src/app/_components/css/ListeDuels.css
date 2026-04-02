@@ -1,48 +1,16 @@
-.PageDuels {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin: 80px 45px 45px 45px;
+.actionsDuels {
+    width: min(100%, 980px);
+    margin: 0 auto;
 }
 
-.gridDuels {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    /* margin: 80px 45px 45px 45px; */
+.infoEtatDuel {
+    padding-right: 0;
 }
 
-.listeDuels {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    background-color: var(--bleu_marine);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-    padding: 35px;
-    border-radius: 50px;
-}
-
-.infoChanteur {
-    display: flex;
+.infoAction {
     justify-content: center;
-    align-items: center;
-    gap: 30px;
 }
 
-.ligne {
-    border-left: 2px dotted white; 
-    height: 100px;             
-}
-
-.play {
-   width: 35px;            
-}
-
-.venyl {
-   width: 100px;            
-}
-
-h1 {
-   font-size: 35px;    
-   /* text-align: center;        */
+.infoAction .btn {
+    margin-left: 0;
 }
