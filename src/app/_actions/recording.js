@@ -48,7 +48,6 @@ export const voterAction = async (enregistrementId, duelId) => {
         if (ancienVote.enregistrementId === enregistrementId) {
             return { success: false, error: "Tu as déjà voté pour celui-ci" };
         }
-        // Changer le vote
         await db.update(votes)
             .set({ enregistrementId })
             .where(eq(votes.id, ancienVote.id));
@@ -67,6 +66,7 @@ export const voterAction = async (enregistrementId, duelId) => {
         .set({ nbLikes: sql`${enregistrements.nbLikes} + 1` })
         .where(eq(enregistrements.id, enregistrementId));
 
+    revalidatePath("/palmares");
     revalidatePath("/voter");
     return { success: true };
 };
