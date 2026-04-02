@@ -2,6 +2,7 @@
 import Palmares from "@/app/_components/Palmares"
 import Hero from "../_components/Hero";
 import Header from "@/app/_components/Header";
+import { getTopDuelsPalmares } from "@/app/_data/data_recording";
 
 export const metadata = {
   title: "Duel de Notes",
@@ -9,12 +10,12 @@ export const metadata = {
 };
 
 const PagePalmares = async () => {
- // const histoiresRecentes = await getRecentStories();
+  const topDuels = await getTopDuelsPalmares();
   return (
     <div>
       <Header />
       <Hero></Hero>
-      <Palmares></Palmares>
+      <Palmares topDuels={topDuels} />
     </div>
   );
 };

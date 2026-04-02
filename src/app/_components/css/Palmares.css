@@ -1,12 +1,12 @@
 .palmares {
     position: relative;
     box-sizing: border-box;
-    padding: 250px 100px 100px 100px;
+    padding: 250px 90px 100px 90px;
 
     display: flex;
     justify-content: center;
     align-items: end;
-    gap: 50px;
+    gap: 40px;
     color: black;
     isolation: isolate;
 }
@@ -47,16 +47,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 25px;
-    margin: 0px 25px;
+    gap: 35px;
+    margin: 0px 20px;
 }
 
 .info_palmares {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     align-items: center;
     text-align: center;
+}
+
+.actions_palmares {
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
 
 .separe {
@@ -79,12 +85,36 @@ p {
 .etoile1,
 .etoile3 {
     position: absolute;
-    top: -90;
-    left: 125;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -65%);
 }
 
 .play_palmares {
-    width: 35px;
+    width: 32px;
+}
+
+.btn_play_palmares {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    line-height: 0;
+    cursor: pointer;
+}
+
+.btn_play_palmares:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.coeur_palmares {
+    width: 16px;
+}
+
+.likes_palmares {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .play_palmares:hover {
@@ -93,75 +123,13 @@ p {
 }
 
 /*À voir si ça reste cohérent...*/
-@media (min-width: 1000px) {
-
-    .etoile2,
-    .etoile1,
-    .etoile3 {
-        position: absolute;
-        top: -130;
-        left: 50;
-    }
-}
-
-@media (min-width: 1200px) {
-
-    .etoile2,
-    .etoile1,
-    .etoile3 {
-        position: absolute;
-        top: -110;
-        left: 75;
-    }
-}
-
-@media (min-width: 1500px) {
-
-    .etoile2,
-    .etoile1,
-    .etoile3 {
-        position: absolute;
-        top: -100;
-        left: 130;
-    }
-}
-
-@media (min-width: 1800px) {
-
-    .etoile2,
-    .etoile1,
-    .etoile3 {
-        position: absolute;
-        top: -100;
-        left: 175;
-    }
-}
-
 @media (min-width: 2000px) {
-
-    .etoile2,
-    .etoile1,
-    .etoile3 {
-        position: absolute;
-        top: -100;
-        left: 190;
-    }
-
     .palmares {
         padding: 300px 150px 75px 150px;
     }
 }
 
 @media (min-width: 2200px) {
-
-    .etoile2,
-    .etoile1,
-    .etoile3 {
-        position: absolute;
-        top: -100;
-        left: 225;
-    }
-
     .palmares::before {
         background-image: url(/Images/jpg/background_palmares.jpg);
         background-repeat: repeat;

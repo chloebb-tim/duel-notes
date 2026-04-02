@@ -160,3 +160,42 @@ export async function getVotesDuUser(userId, duelIds) {
   const monVote = rows.filter(v => v.userId === userId);
   return Object.fromEntries(monVote.map(v => [v.duelId, v.enregistrementId]));
 }
+
+export async function getTopDuelsPalmares() {
+  const duels = await db.query.duelsTable.findMany({
+    where: isNotNull(duelsTable.chanteur2id),
+    with: {
+      premierChanteur: true,
+      deuxiemeChanteur: true,
+    },
+  });
+
+  const duelsAvecNoms = await Promise.all(
+    duels.map(async (duel) => {
+      const user1 = duel.premierChanteur
+        ? await db.select({ name: user.name }).from(user).where(eq(user.id, duel.premierChanteur.userId)).limit(1)
+        : [];
+      const user2 = duel.deuxiemeChanteur
+        ? await db.select({ name: user.name }).from(user).where(eq(user.id, duel.deuxiemeChanteur.userId)).limit(1)
+        : [];
+
+      const totalLikes =
+        (duel.premierChanteur?.nbLikes ?? 0) + (duel.deuxiemeChanteur?.nbLikes ?? 0);
+
+      return {
+        ...duel,
+        totalLikes,
+        premierChanteur: duel.premierChanteur
+          ? { ...duel.premierChanteur, userName: user1[0]?.name ?? duel.premierChanteur.userId ?? "Inconnu" }
+          : null,
+        deuxiemeChanteur: duel.deuxiemeChanteur
+          ? { ...duel.deuxiemeChanteur, userName: user2[0]?.name ?? duel.deuxiemeChanteur.userId ?? "Inconnu" }
+          : null,
+      };
+    })
+  );
+
+  return duelsAvecNoms
+    .sort((a, b) => b.totalLikes - a.totalLikes)
+    .slice(0, 3);
+}
