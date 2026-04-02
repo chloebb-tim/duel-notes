@@ -21,7 +21,7 @@
 .menu {
     display: flex;
     align-items: center;
-    gap: 70px;
+    gap: 500px;
 }
 
 .navigation {
@@ -31,7 +31,7 @@
 }
 
 .navhover:hover {
-    color: var(--orange);
+    /* color: var(--orange); */
     transform: scale(1.2);
     transition: transform 0.3s ease;
 }

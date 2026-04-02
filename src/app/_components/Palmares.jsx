@@ -15,19 +15,19 @@ const Palmares = ({ }) => {
 
         tl.to(P1, {
             opacity: 1,
-            duration: 1,
+            duration: 0.5,
             ease: "power2.out"
-        }, 1.5);
+        }, 0.7);
         tl.to(P2, {
             opacity: 1,
-            duration: 1,
+            duration: 0.5,
             ease: "power2.out"
-        }, 2.5);
+        }, 0.9);
         tl.to(P3, {
             opacity: 1,
-            duration: 1,
+            duration: 0.5,
             ease: "power2.out"
-        }, 3.5);
+        }, 1.1);
     }, []);
 
     return (

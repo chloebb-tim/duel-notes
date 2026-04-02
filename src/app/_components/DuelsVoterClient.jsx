@@ -65,13 +65,13 @@ const DuelsVoterClient = ({ duels, mesVotes }) => {
         tl.to( gridVote, {
             y: 100,
             opacity: 0,
-            duration: 1,
+            duration: 0.4,
             ease: "power2.out"
         });
         tl.to( gridVote, {
             y: 0,
             opacity: 1,
-            duration: 1,
+            duration: 0.4,
             ease: "power2.out"
         });
     }, []);

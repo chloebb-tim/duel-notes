@@ -14,13 +14,13 @@ const Hero = ({ }) => {
         tl.to(alexandrin, {
             y: 100,
             opacity: 0,
-            duration: 1,
+            duration: 0.5,
             ease: "power2.out"
         });
         tl.to(alexandrin, {
             y: 0,
             opacity: 1,
-            duration: 1,
+            duration: 0.5,
             ease: "power2.out"
         });
     }, []);
@@ -64,12 +64,11 @@ const Hero = ({ }) => {
                         </p>
                     </div>
                 </div>
-
+{/* 
                 <div className="btnVoirDuels ">
-                    {/* <img className="cle" src="/Images/svg/CleDeSol.svg" alt="Clé de sol" /> */}
                     <button className="btn" onClick={() => window.location.href = "/duels"}>Voir les duels</button>
                     <img className="cle" src="/Images/svg/CleDeSol.svg" alt="Clé de sol" />
-                </div>
+                </div> */}
             </div>
             {/* </div> */}
 

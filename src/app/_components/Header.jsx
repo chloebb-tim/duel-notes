@@ -13,8 +13,8 @@ const Header = () => {
 
         <div className="menu">
           <nav className="navigation">
-            <Link className="navhover" href="/voter">Voter</Link>
-            <Link className="navhover" href="/duels">Duels</Link>
+            <Link className="navhover btn" href="/voter">Voter</Link>
+            <Link className="navhover btn" href="/duels">Duels</Link>
           </nav>
           {/* <div aria-label="profile"> */}
           {/* <img className="profile" aria-label="profile" src="/Images/svg/icon_profil_noir.svg" alt="Icon du profil" /> */}
