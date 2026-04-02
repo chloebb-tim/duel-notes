@@ -1,6 +1,6 @@
 "use client";
 
-const AuthForm = ({ titre, formAction, showName, ctaTitle, children }) => {
+const AuthForm = ({ titre, formAction, showName, ctaTitle, children, passwordMinLength, passwordHint }) => {
     return (
         <div>
             <form
@@ -56,8 +56,10 @@ const AuthForm = ({ titre, formAction, showName, ctaTitle, children }) => {
                         id="fld_password"
                         placeholder="********"
                         name="password"
+                        minLength={passwordMinLength}
                         required
                     />
+                    {passwordHint && <small>{passwordHint}</small>}
                 </div>
 
                 <button className="btn"

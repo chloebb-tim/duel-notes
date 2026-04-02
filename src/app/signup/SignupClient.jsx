@@ -13,6 +13,11 @@ const SignupClient = () => {
     const email = formData.get("email");
     const password = formData.get("password");
 
+    if (!password || String(password).length < 8) {
+      toast.error("Le mot de passe doit contenir au moins 8 caractères.");
+      return;
+    }
+
     try {
       const result = await authClient.signUp.email({
         name: name,
@@ -22,13 +27,23 @@ const SignupClient = () => {
           onSuccess: () => {
             router.push("/palmares");
           },
-          onError: () => {
+          onError: (ctx) => {
+            const serverMessage = ctx?.error?.message || "";
+            if (serverMessage.toLowerCase().includes("password") || serverMessage.includes("mot de passe")) {
+              toast.error("Le mot de passe doit contenir au moins 8 caractères.");
+              return;
+            }
             toast.error("Erreur");
           },
         },
       });
 
       if (result?.error) {
+        const errorMessage = result.error.message || "";
+        if (errorMessage.toLowerCase().includes("password") || errorMessage.includes("mot de passe")) {
+          toast.error("Le mot de passe doit contenir au moins 8 caractères.");
+          return;
+        }
         toast.error("Erreur");
       }
     } catch {
@@ -44,6 +59,8 @@ const SignupClient = () => {
           formAction={submitAction}
           showName={true}
           ctaTitle={"S'inscrire"}
+          passwordMinLength={8}
+          passwordHint={"Minimum 8 caractères"}
         >
           <p>
             Vous avez déjà un compte ?{" "}

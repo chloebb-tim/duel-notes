@@ -57,6 +57,7 @@ export const voterAction = async (enregistrementId, duelId) => {
         await db.update(enregistrements)
             .set({ nbLikes: sql`${enregistrements.nbLikes} + 1` })
             .where(eq(enregistrements.id, enregistrementId));
+        revalidatePath("/palmares");
         revalidatePath("/voter");
         return { success: true, changed: true };
     }
