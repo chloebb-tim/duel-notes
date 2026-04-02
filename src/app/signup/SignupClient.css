@@ -1,11 +1,16 @@
 body {
-  font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: var(--bleu);
-  margin: 0;
+  background-image: url(/Images/jpg/fond_etoile_pale.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+main {
+  display: flex;
+  align-items: center;
 }
 
 form {

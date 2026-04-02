@@ -1,6 +1,7 @@
 
 import Palmares from "@/app/_components/Palmares"
 import Hero from "../_components/Hero";
+import Header from "@/app/_components/Header";
 
 export const metadata = {
   title: "Duel de Notes",
@@ -11,6 +12,7 @@ const PagePalmares = async () => {
  // const histoiresRecentes = await getRecentStories();
   return (
     <div>
+      <Header />
       <Hero></Hero>
       <Palmares></Palmares>
     </div>
