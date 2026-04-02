@@ -188,7 +188,7 @@ const DuelCard = ({ duel, monVoteInitial, activePlaybackKey, setActivePlaybackKe
                     </details>
                     <p className="nomChanteur">{getDisplayName(chanteur)}</p>
                     <p className="dateEnregistrement">
-                            {getDisplayDateTime(chanteur.createdAt)}
+                        {getDisplayDateTime(chanteur.createdAt)}
                     </p>
                     <button
                         className={`boutonVote ${dejaVotePourCelui ? "vote-actif" : ""} ${dejaVotePourAutre ? "vote-desactive" : ""}`}

@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import { getSongTitle, getSongUrl } from "@/app/_data/songMetadata";
+import { gsap } from "gsap";
 
 const getDisplayName = (recording) => {
   const name = recording?.userName?.trim();
@@ -36,6 +37,25 @@ const ListeDuelsClient = ({ duels }) => {
       router.replace("/duels");
     }
   }, [searchParams, router]);
+
+  useEffect(() => {
+    const tl = gsap.timeline({});
+    const gridVote = document.querySelector(".gridVote");
+
+    tl.to(gridVote, {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out"
+    });
+    tl.to(gridVote, {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power2.out"
+    });
+  }, []);
+
 
   return (
     <>

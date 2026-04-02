@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import DuelCard from "./DuelCard";
 import { ToastContainer } from "react-toastify";
+import { gsap } from "gsap";
 
 const DUELS_PAR_PAGE = 6;
 
@@ -56,6 +57,24 @@ const DuelsVoterClient = ({ duels, mesVotes }) => {
         for (let i = debut; i <= fin; i++) pages.push(i);
         return pages;
     }, [currentPage, totalPages]);
+
+    useEffect(() => {
+        const tl = gsap.timeline({});
+        const gridVote = document.querySelector(".gridVote");
+
+        tl.to( gridVote, {
+            y: 100,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out"
+        });
+        tl.to( gridVote, {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out"
+        });
+    }, []);
 
     return (
         <>
