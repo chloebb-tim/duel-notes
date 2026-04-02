@@ -169,3 +169,13 @@ p {
         background-size: cover;
     }
 }
+
+@media (min-width: 2600px) {
+
+    .palmares {
+        background-image: url(/Images/jpg/fond_etoile_fonce.jpg);
+        background-repeat: repeat;
+        background-position: top;
+        background-size: cover;
+    }
+}
