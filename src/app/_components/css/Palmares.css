@@ -63,6 +63,7 @@
     display: flex;
     align-items: center;
     gap: 18px;
+    min-height: 32px;
 }
 
 .separe {
@@ -91,10 +92,19 @@ p {
 }
 
 .play_palmares {
-    width: 32px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 .btn_play_palmares {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: transparent;
     border: 0;
     padding: 0;

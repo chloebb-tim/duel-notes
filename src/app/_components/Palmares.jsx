@@ -140,7 +140,7 @@ const Palmares = ({ topDuels = [] }) => {
                                 >
                                     <img
                                         className="play_palmares"
-                                        src={playingRecordingId === duel2?.premierChanteur?.id ? "/Images/svg/pause_bleu.svg" : "/Images/svg/Play_2.svg"}
+                                        src={playingRecordingId === duel2?.premierChanteur?.id ? "/Images/svg/pause_2.svg" : "/Images/svg/Play_2.svg"}
                                         alt={playingRecordingId === duel2?.premierChanteur?.id ? "Icon pause" : "Icon play"}
                                     />
                                 </button>
@@ -160,7 +160,7 @@ const Palmares = ({ topDuels = [] }) => {
                                 >
                                     <img
                                         className="play_palmares"
-                                        src={playingRecordingId === duel2?.deuxiemeChanteur?.id ? "/Images/svg/pause_bleu.svg" : "/Images/svg/Play_2.svg"}
+                                        src={playingRecordingId === duel2?.deuxiemeChanteur?.id ? "/Images/svg/pause_2.svg" : "/Images/svg/Play_2.svg"}
                                         alt={playingRecordingId === duel2?.deuxiemeChanteur?.id ? "Icon pause" : "Icon play"}
                                     />
                                 </button>
@@ -187,7 +187,7 @@ const Palmares = ({ topDuels = [] }) => {
                                 >
                                     <img
                                         className="play_palmares"
-                                        src={playingRecordingId === duel1?.premierChanteur?.id ? "/Images/svg/pause_bleu.svg" : "/Images/svg/play_1.svg"}
+                                        src={playingRecordingId === duel1?.premierChanteur?.id ? "/Images/svg/pause_1.svg" : "/Images/svg/play_1.svg"}
                                         alt={playingRecordingId === duel1?.premierChanteur?.id ? "Icon pause" : "Icon play"}
                                     />
                                 </button>
@@ -207,7 +207,7 @@ const Palmares = ({ topDuels = [] }) => {
                                 >
                                     <img
                                         className="play_palmares"
-                                        src={playingRecordingId === duel1?.deuxiemeChanteur?.id ? "/Images/svg/pause_bleu.svg" : "/Images/svg/play_1.svg"}
+                                        src={playingRecordingId === duel1?.deuxiemeChanteur?.id ? "/Images/svg/pause_1.svg" : "/Images/svg/play_1.svg"}
                                         alt={playingRecordingId === duel1?.deuxiemeChanteur?.id ? "Icon pause" : "Icon play"}
                                     />
                                 </button>
@@ -234,7 +234,7 @@ const Palmares = ({ topDuels = [] }) => {
                                 >
                                     <img
                                         className="play_palmares"
-                                        src={playingRecordingId === duel3?.premierChanteur?.id ? "/Images/svg/pause_bleu.svg" : "/Images/svg/play_3.svg"}
+                                        src={playingRecordingId === duel3?.premierChanteur?.id ? "/Images/svg/pause_3.svg" : "/Images/svg/play_3.svg"}
                                         alt={playingRecordingId === duel3?.premierChanteur?.id ? "Icon pause" : "Icon play"}
                                     />
                                 </button>
@@ -254,7 +254,7 @@ const Palmares = ({ topDuels = [] }) => {
                                 >
                                     <img
                                         className="play_palmares"
-                                        src={playingRecordingId === duel3?.deuxiemeChanteur?.id ? "/Images/svg/pause_bleu.svg" : "/Images/svg/play_3.svg"}
+                                        src={playingRecordingId === duel3?.deuxiemeChanteur?.id ? "/Images/svg/pause_3.svg" : "/Images/svg/play_3.svg"}
                                         alt={playingRecordingId === duel3?.deuxiemeChanteur?.id ? "Icon pause" : "Icon play"}
                                     />
                                 </button>
