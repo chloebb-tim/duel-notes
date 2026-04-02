@@ -4,17 +4,18 @@
   flex-direction: column;
   background: #91c3e4;
   overflow: hidden;
+  background-color: var(--bleu_fonce);
 }
 
 .record-choose-page {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
   gap: 48px;
-  padding: 40px 24px;
+  padding: 150px 24px;
 }
 
 .choose-title {
@@ -115,7 +116,7 @@
 }
 
 .change-song-btn {
-  
+
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.4);
   color: white;
@@ -152,17 +153,26 @@
   min-height: 52px;
 }
 
-.record-main {
+/* .record-main {
   flex: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  align-items: center;
   min-height: 0;
   overflow: auto;
+} */
 
+.record-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 0;
+  overflow: auto;
+  margin-top: 100px;
 }
 
 .record-left {
-  background: var(--bleu_fonce);
+  /* background: var(--bleu_fonce); */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -173,7 +183,7 @@
 }
 
 .record-right {
-  background: #19466d;
+  /* background: #19466d; */
   display: flex;
   flex-direction: column;
   padding: 120px 32px 36px 32px;
@@ -191,7 +201,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 200px;
   flex-wrap: wrap;
   padding-bottom: 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);

@@ -118,63 +118,6 @@ const PageRecord = () => {
     }
   };
 
-  // const startRecording = async () => {
-  //   try {
-  //     const stream = await navigator.mediaDevices.getUserMedia({
-  //       audio: {
-  //         echoCancellation: false,
-  //         noiseSuppression: false,
-  //         autoGainControl: false,
-  //         sampleRate: 48000,
-  //         channelCount: 1,
-  //       },
-  //     });
-
-  //     const mediaRecorder = new MediaRecorder(stream, {
-  //       mimeType: 'audio/webm;codecs=opus',
-  //       audioBitsPerSecond: 192000,
-  //     });
-  //     mediaRecorderRef.current = mediaRecorder;
-
-  //     const chunks = [];
-  //     mediaRecorder.ondataavailable = (event) => {
-  //       if (event.data && event.data.size > 0) {
-  //         chunks.push(event.data);
-  //       }
-  //     };
-
-  //     mediaRecorder.onstop = () => {
-  //       const blob = new Blob(chunks, {
-  //         type: mediaRecorder.mimeType || 'audio/webm',
-  //       });
-  //       setAudioBlob(blob);
-  //       const audioURL = URL.createObjectURL(blob);
-  //       if (audioRef.current) {
-  //         audioRef.current.src = audioURL;
-  //       }
-  //       stream.getTracks().forEach((track) => track.stop());
-  //     };
-
-  //     if (musicRef.current) {
-  //       const musicAudio = musicRef.current;
-  //       musicAudio.src = songChoice === 'chanson1' ? '/chanson1.mp3' : '/chanson2.mp3';
-  //       musicAudio.currentTime = 0;
-  //       try {
-  //         await musicAudio.play();
-  //         setIsMusicPlaying(true);
-  //       } catch (playError) {
-  //         console.error('Unable to play music during recording:', playError);
-  //       }
-  //     }
-
-  //     mediaRecorder.start();
-  //     setIsRecording(true);
-  //   } catch (error) {
-  //     console.error('Error accessing microphone:', error);
-  //     alert('Could not access microphone. Please check permissions.');
-  //   }
-  // };
-
   const startRecording = async () => {
     if (isSongPreviewPlaying && musicRef.current) {
       musicRef.current.pause();
@@ -276,19 +219,6 @@ const PageRecord = () => {
     await musicEl.play();
     setIsMusicPlaying(true);
   };
-
-  // const stopRecording = () => {
-  //   if (mediaRecorderRef.current && isRecording) {
-  //     mediaRecorderRef.current.stop();
-  //     setIsRecording(false);
-  //   }
-
-  //   if (musicRef.current && !musicRef.current.paused) {
-  //     musicRef.current.pause();
-  //     musicRef.current.currentTime = 0;
-  //     setIsMusicPlaying(false);
-  //   }
-  // };
 
   const stopRecording = () => {
     if (mediaRecorderRef.current && isRecording) {
