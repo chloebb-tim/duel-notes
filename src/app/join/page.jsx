@@ -3,12 +3,15 @@
 //- enleve boutons quand on enregistre? looks weird rn. ou les garder mais disabled? that would be prettier?
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import "./record.css";
 import { useState, useRef, useEffect, Suspense } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import { SONGS, getSongUrl } from "@/app/_data/songMetadata";
 
 const PageJoin = () => {
- const RETARD_GOSSANT_ESTI = 200;
+  const RETARD_GOSSANT_ESTI = 200;
+  const router = useRouter();
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
   const [songChoice, setSongChoice] = useState("chanson1");
@@ -28,6 +31,7 @@ const PageJoin = () => {
   const [countdown, setCountdown] = useState(null);
   const searchParams = useSearchParams();
   const duelId = Number(searchParams.get("duelId"));
+  const currentSong = SONGS[songChoice] ?? SONGS.chanson1;
 
   useEffect(() => {
     const loadDuel = async () => {
@@ -75,9 +79,6 @@ const PageJoin = () => {
     oscillator.disconnect();
     gain.disconnect();
   };
-
-  const getSongUrl = (choice) =>
-    choice === "chanson1" ? "/chanson1.mp3" : "/chanson2.mp3";
 
   const stopMixPlayback = async () => {
     const { music, voice } = mixSourcesRef.current;
@@ -432,7 +433,7 @@ const PageJoin = () => {
       console.log("Database response status:", dbResponse.status);
 
       if (dbResponse.ok) {
-        alert("ca marche youpi!!!");
+        router.push("/duels?published=1");
         setAudioBlob(null);
         if (audioRef.current) {
           audioRef.current.src = "";
@@ -443,118 +444,91 @@ const PageJoin = () => {
       }
     } catch (error) {
       console.error("Error publishing recording:", error);
-      alert("Error: " + error.message);
+      toast.error("Erreur : " + error.message);
     } finally {
       setIsUploading(false);
     }
   };
 
   return (
-    <div className="record-page">
-      <section className="record-topbar">
-        <div className="song-selection-box">
-          <label htmlFor="songChoice">Choisis une chanson</label>
-          <div className="song-selection-inline">
-            <select
-              id="songChoice"
-              value={songChoice}
-              onChange={(e) => {
-                const newChoice = e.target.value;
-                setSongChoice(newChoice);
+    <>
+      <div className="record-page">
+        <section className="record-main">
+          <div className="record-left">
+            <div className="mic-stage">
+              {countdown && <div className="countdown-overlay">{countdown}</div>}
 
-                if (isSongPreviewPlaying && musicRef.current) {
-                  musicRef.current.src = getSongUrl(newChoice);
-                  musicRef.current.currentTime = 0;
-                  musicRef.current.play().catch(() => {});
-                }
-              }}
-              className="song-select"
-              disabled={isRecording || true}
-            >
-              <option value="chanson1">chanson 1</option>
-              <option value="chanson2">chanson 2</option>
-            </select>
-
-            <button
-              type="button"
-              className="music-control-button"
-              onClick={handleToggleSongPreview}
-              disabled={isRecording || isMixPlaying}
-              aria-label={
-                isSongPreviewPlaying ? "Pause preview" : "Play preview"
-              }
-            >
-              <span className="material-icons">
-                {isSongPreviewPlaying ? "pause" : "play_arrow"}
-              </span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section className="record-main">
-        <div className="record-left">
-          {countdown && <div className="countdown-overlay">{countdown}</div>}
-
-          <button
-            className={`mic-toggle ${isRecording ? "recording" : ""}`}
-            id="micr"
-            onClick={handleButtonClick}
-            disabled={countdown !== null}
-          >
-            <span className="material-icons">
-              {isRecording ? "stop" : "mic"}
-            </span>
-          </button>
-
-          <audio className="playback" ref={audioRef} controls />
-          <audio ref={musicRef} preload="auto" hidden />
-
-          <div className="record-actions">
-            {audioBlob && !isRecording && (
               <button
-                className="publish-button"
-                type="button"
-                onClick={isMixPlaying ? handleStopMix : handlePlayMix}
+                className={`mic-toggle ${isRecording ? "recording" : ""}`}
+                id="micr"
+                onClick={handleButtonClick}
+                disabled={countdown !== null}
               >
-                Écoute ta version
+                <span className="material-icons">
+                  {isRecording ? "stop" : "mic"}
+                </span>
               </button>
-            )}
+            </div>
 
-            {audioBlob && !isRecording && (
-              <button
-                className="publish-button"
-                type="button"
-                onClick={handlePublish}
-                disabled={isUploading}
-              >
-                Publier
-              </button>
-            )}
-          </div>
-        </div>
+            <audio ref={audioRef} hidden />
+            <audio ref={musicRef} preload="auto" hidden />
 
-        <div className="record-right">
-          <div className="lyrics-box">
-            <h2>Paroles</h2>
-            <div>
-              <p>ceci est une chanson très touchante</p>
-              <p>ceci est très bien écrit</p>
-              <p>une tres belle chanson</p>
-              <p>wow wow je pleure</p>
-              <p>ceci est une chanson très touchante</p>
-              <p>ceci est très bien écrit</p>
-              <p>une tres belle chanson</p>
-              <p>wow wow je pleure</p>
-              <p>ceci est une chanson très touchante</p>
-              <p>ceci est très bien écrit</p>
-              <p>une tres belle chanson</p>
-              <p>wow wow je pleure</p>
+            <div className="record-actions">
+              {audioBlob && !isRecording && (
+                <button
+                  className="publish-button"
+                  type="button"
+                  onClick={isMixPlaying ? handleStopMix : handlePlayMix}
+                >
+                  Écoute ta version
+                </button>
+              )}
+
+              {audioBlob && !isRecording && (
+                <button
+                  className="publish-button"
+                  type="button"
+                  onClick={handlePublish}
+                  disabled={isUploading}
+                >
+                  Publier
+                </button>
+              )}
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+
+          <div className="record-right">
+            <div className="lyrics-box">
+              <div className="lyrics-header">
+                <div>
+                  <p className="lyrics-song-label">Duel rejoint</p>
+                  <h2>{currentSong.title}</h2>
+                </div>
+                <div className="lyrics-song-controls">
+                  <button
+                    type="button"
+                    className="music-control-button"
+                    onClick={handleToggleSongPreview}
+                    disabled={isRecording || isMixPlaying}
+                    aria-label={isSongPreviewPlaying ? "Pause preview" : "Play preview"}
+                  >
+                    <span className="material-icons">
+                      {isSongPreviewPlaying ? "pause" : "play_arrow"}
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div className="lyrics-content">
+                {currentSong.lyrics.map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <ToastContainer position="bottom-right" autoClose={3500} hideProgressBar={false} newestOnTop closeOnClick pauseOnHover theme="colored" />
+    </>
   );
 };
 

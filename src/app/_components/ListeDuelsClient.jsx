@@ -2,13 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
-
-const getSongUrl = (choice) => {
-  if (choice === "chanson1") return "/chanson1.mp3";
-  if (choice === "chanson2") return "/chanson2.mp3";
-  return null;
-};
+import { getSongTitle, getSongUrl } from "@/app/_data/songMetadata";
 
 const getDisplayName = (recording) => {
   const name = recording?.userName?.trim();
@@ -31,6 +27,15 @@ const getPlaybackKey = (duelId, recordingId) => `${duelId}:${recordingId}`;
 
 const ListeDuelsClient = ({ duels }) => {
   const [activePlaybackKey, setActivePlaybackKey] = useState(null);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (searchParams.get("published") === "1") {
+      toast.success("Enregistrement publié avec succès !");
+      router.replace("/duels");
+    }
+  }, [searchParams, router]);
 
   return (
     <>
@@ -177,7 +182,7 @@ const DuelIncompletCard = ({ duel, activePlaybackKey, setActivePlaybackKey }) =>
   return (
     <div className="listeVote listeDuels" key={duel.id}>
       <div className="titreChanson titreDuel">
-        <h2>{duel.songChoice ?? "Chanson inconnue"}</h2>
+        <h2>{getSongTitle(duel.songChoice)}</h2>
       </div>
 
       <div className="duelsVote">

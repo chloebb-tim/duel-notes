@@ -1,59 +1,146 @@
 .record-page {
-  min-height: 100vh;
-  height: 100vh;
+  height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
   background: #91c3e4;
   overflow: hidden;
 }
 
-.record-topbar {
+.record-choose-page {
+  min-height: calc(100vh - 120px);
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  gap: 20px;
-  padding: 20px 24px;
-  background: #082135;
+  justify-content: center;
+
+  gap: 48px;
+  padding: 40px 24px;
+}
+
+.choose-title {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+}
+
+.song-cards {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.song-card {
+  background: var(--bleu_marine);
+  border: 2px solid transparent;
+  border-radius: 20px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 320px;
+  min-height: 320px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.song-card-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+  min-height: 3.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.song-card-preview-btn {
+  background-color: #5d98c0;
+  border: none;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+  color: white;
+}
+
+.song-card-preview-btn:hover {
+  transform: scale(1.08);
+}
+
+.song-card-preview-btn.previewing {
+  background-color: #d7573c;
+}
+
+.song-card-preview-btn .material-icons {
+  font-size: 38px;
+}
+
+.song-card-hint {
+  color: #91c3e4;
+  font-size: 0.875rem;
+  margin: 0;
+  text-align: center;
+}
+
+.song-card-choose-btn {
+  background-color: #d7573c;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 36px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.song-card-choose-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}
+
+.song-chosen-name {
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.change-song-btn {
+  
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.change-song-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.change-song-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.record-topbar {
+  display: none;
 }
 
 .song-selection-box {
-  max-width: 520px;
-  width: 100%;
-}
-
-.song-selection-box label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  color: white;
-}
-
-.song-selection-inline {
-  display: flex;
-  gap: 12px;
-
-
-
-  flex-wrap: nowrap;
-  align-items: center;
-}
-
-.song-select {
-  width: 240px;
-  min-width: 240px;
-  max-width: 240px;
-  padding: 12px 16px;
-  border: none;
-
-  background: #d7573c;
-  color: white;
-  font-size: 16px;
-}
-
-.song-select:focus {
-  outline: 2px solid white;
-  outline-offset: 2px;
+  display: none;
 }
 
 .record-actions {
@@ -62,6 +149,7 @@
   gap: 12px;
   justify-content: center;
   margin-top: 16px;
+  min-height: 52px;
 }
 
 .record-main {
@@ -74,7 +162,7 @@
 }
 
 .record-left {
-background: var(--bleu_fonce);
+  background: var(--bleu_fonce);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -82,24 +170,75 @@ background: var(--bleu_fonce);
   gap: 22px;
   padding: 30px 20px;
   position: relative;
-  border: var(--bleu) 1px solid;
-  
 }
 
 .record-right {
   background: #19466d;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 20px;
-  border: var(--bleu) 1px solid;
+  flex-direction: column;
+  padding: 120px 32px 36px 32px;
+  overflow-y: auto;
 }
 
-.lyrics-box h2 {
+.lyrics-box {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+
+.lyrics-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.lyrics-header h2 {
   color: white;
-  font-size: 34px;
-  font-weight: 300;
+  font-size: 1.4rem;
+  font-weight: 700;
   margin: 0;
+}
+
+.lyrics-song-label {
+  color: #91c3e4;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 4px 0;
+}
+
+.lyrics-song-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.lyrics-content {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.lyrics-content p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  line-height: 1.9;
+  margin: 0;
+  white-space: pre-line;
+}
+
+.mic-stage {
+  position: relative;
+  width: 330px;
+  height: 330px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mic-toggle {
@@ -108,26 +247,23 @@ background: var(--bleu_fonce);
   cursor: pointer;
   font-size: 0;
   border-radius: 50%;
-  width: 84px;
-  height: 84px;
+  width: 130px;
+  height: 130px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #f0f0f0;
   color: #666;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
 .mic-toggle:hover {
   transform: scale(1.05);
-  
 }
 
-
-
 .mic-toggle .material-icons {
-  font-size: 40px;
+  font-size: 64px;
   color: #666;
 }
 
@@ -188,7 +324,10 @@ background: var(--bleu_fonce);
 .countdown-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(8, 33, 53, 0.55);
+  width: 330px;
+  height: 330px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.272);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -196,4 +335,5 @@ background: var(--bleu_fonce);
   font-weight: 700;
   color: white;
   z-index: 5;
+  pointer-events: none;
 }

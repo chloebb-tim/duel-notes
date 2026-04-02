@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState, useTransition } from "react";
 import { voterAction } from "@/app/_actions/recording";
 import { toast } from "react-toastify";
+import { getSongTitle, getSongUrl } from "@/app/_data/songMetadata";
 
 const getDisplayName = (recording) => {
     const name = recording?.userName?.trim();
@@ -17,12 +18,6 @@ const getDisplayDateTime = (timestamp) => {
         minute: "2-digit",
         hour12: false,
     });
-};
-
-const getSongUrl = (choice) => {
-    if (choice === "chanson1") return "/chanson1.mp3";
-    if (choice === "chanson2") return "/chanson2.mp3";
-    return null;
 };
 
 const getPlaybackKey = (duelId, recordingId) => `${duelId}:${recordingId}`;
@@ -212,7 +207,7 @@ const DuelCard = ({ duel, monVoteInitial, activePlaybackKey, setActivePlaybackKe
     return (
         <div className="listeVote">
             <div className="titreChanson">
-                <h2>{duel.songChoice ?? "Chanson inconnue"}</h2>
+                <h2>{getSongTitle(duel.songChoice)}</h2>
             </div>
             <div className="duelsVote">
                 {renderChanteur(duel.premierChanteur)}
