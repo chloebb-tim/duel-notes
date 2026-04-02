@@ -12,7 +12,7 @@ import { SONGS, getSongUrl } from "@/app/_data/songMetadata";
 import Header from "@/app/_components/Header";
 
 const PageJoin = () => {
-  const RETARD_GOSSANT_ESTI = 200;
+  const RETARD_GOSSANT_ESTI = 100;
   const router = useRouter();
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);

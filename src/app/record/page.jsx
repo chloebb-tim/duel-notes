@@ -13,7 +13,7 @@ import Header from "@/app/_components/Header";
 
 const PageRecord = () => {
   const router = useRouter();
-  const RETARD_GOSSANT_ESTI = 200;
+  const RETARD_GOSSANT_ESTI = 100;
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
   const [songChoice, setSongChoice] = useState("chanson1_v1");
