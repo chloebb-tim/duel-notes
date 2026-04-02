@@ -1,0 +1,26 @@
+.btn {
+    background-color: var(--orange);
+    padding: 15px 45px;
+    border-radius: 20px;
+    list-style: none;
+    font-size: 20px;
+}
+
+.btnDeconnexion {
+    background-color: var(--orange);
+    padding: 15px;
+    border-radius: 20px;
+    list-style: none;
+    font-size: 15px;
+}
+
+.btn:hover, .btnDeconnexion:hover {
+    background-color: #b44732;
+
+}
+
+.inline {
+    display: inline-block;
+    width: auto;
+    align-self: flex-start;
+}

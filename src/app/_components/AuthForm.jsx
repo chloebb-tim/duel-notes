@@ -60,7 +60,7 @@ const AuthForm = ({ titre, formAction, showName, ctaTitle, children }) => {
                     />
                 </div>
 
-                <button
+                <button className="btn"
                     type="submit"
                 >
                     {ctaTitle}

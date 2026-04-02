@@ -1,0 +1,80 @@
+.palmares {
+    background-image: url(/Images/jpg/decor_palmares.jpg);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    padding: 250px 100px 100px 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    gap: 50px;
+    color: black;
+}
+
+.place2,
+.place3,
+.place1 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    width: 600px;
+    background-color: white;
+    border-radius: 10%;
+    align-items: center;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+}
+
+.place1 {
+    height: 350px;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin: 0px 25px;
+}
+
+.info_palmares {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    text-align: center;
+}
+
+.separe {
+    border-left: 2px dotted gray;
+    height: 100px;
+}
+
+h2 {
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 20px;
+}
+
+.etoile2,
+.etoile1,
+.etoile3 {
+    position: absolute;
+    top: -90;
+    left: 125;
+}
+
+.play_palmares {
+    width: 35px;
+}
+
+.play_palmares:hover {
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+}

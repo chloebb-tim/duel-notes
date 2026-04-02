@@ -1,6 +1,6 @@
 import ListeDuels from "../_components/ListeDuels";
 
-const PageVote = async () => {
+const PageDuels = async () => {
   return <ListeDuels />;
 };
-export default PageVote;
+export default PageDuels;
