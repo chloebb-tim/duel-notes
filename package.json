@@ -30,6 +30,7 @@
     "@tailwindcss/postcss": "^4",
     "drizzle-kit": "^0.31.10",
     "tailwindcss": "^4",
+    "cross-env": "^10.1.0",
     "tsx": "^4.21.0"
   }
 }
