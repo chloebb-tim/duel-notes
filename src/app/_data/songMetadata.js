@@ -3,18 +3,18 @@ export const SONGS = {
     title: "Le Duel des Notes (chanson thème)",
     url: "/chanson1.mp3",
     lyrics: [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nSed do eiusmod tempor incididunt ut labore et dolore.\nUt enim ad minim veniam, quis nostrud exercitation.\nUllamco laboris nisi ut aliquip ex ea commodo.",
-      "Duis aute irure dolor in reprehenderit in voluptate velit.\nEsse cillum dolore eu fugiat nulla pariatur.\nExcepteur sint occaecat cupidatat non proident.\nSunt in culpa qui officia deserunt mollit anim.",
-      "Curabitur pretium tincidunt lacus, sed viverra mauris.\nPraesent dapibus, neque id cursus faucibus, tortor.\nDonec vitae sapien ut libero venenatis faucibus.\nNullam quis ante, etiam sit amet orci eget.",
+      "C’est le Duel des Notes, exprime toute ta passion\nLa même musique pour deux, mais chacun sa version\nC’est une arène féroce, ici la voix fait loi\nPour avoir la victoire, deux options s’offrent à toi",
+      "Trouve un duel qui t’inspire, fais-le à ta façon\nAvec les mêmes paroles, posées sur le même son\nTu peux aussi lancer ton propre défi vocal\nDonne le meilleur de toi et attends ton rival",
+      "Quand tu as terminé, n’oublie pas de voter\nLes duels les plus aimés sont toujours affichés\nPour chaque duel écouté, choisis la meilleure voix\nÇa peut être difficile, car tu n’as qu’un seul choix",
     ],
   },
   chanson2: {
-    title: "Le Jardin de printemps",
+    title: "Le Printemps",
     url: "/chanson2.mp3",
     lyrics: [
-      "Integer tincidunt, tortor nec rhoncus dictum, massa.\nVivamus elementum semper nisi, aenean vulputate eleifend.\nAenean leo ligula, porttitor eu, consequat vitae.\nEleifend ac, enim, aliquam lorem ante dapibus.",
-      "Phasellus viverra nulla ut metus varius laoreet.\nQuisque rutrum, aenean imperdiet etiam ultricies nisi.\nVel augue curabitur ullamcorper ultricies nisi nam.\nEget dui etiam rhoncus maecenas tempus tellus.",
-      "Donec sodales sagittis magna sed consequat leo.\nVestibulum ante ipsum primis in faucibus orci.\nNam quam nunc, blandit vel, luctus pulvinar.\nHendrerit id, lorem maecenas nec odio et.",
+      "Le printemps est enfin arrivé\nLes fleurs ont hâte de pousser\nOn sent le soleil de l’été naissant\nAinsi que le vent de l’hiver mourant",
+      "Bientôt les bourgeons vont ouvrir,\nSur chaque visage, on verra un sourire\nL’herbe poussera et tout sera vert,\nSoyons heureux de la fin de l’hiver",
+      "La neige disparait sous nos pieds\nOn change nos bottes pour des souliers\nLa lumière au bout du tunnel\nLa vie est de plus en plus belle",
     ],
   },
 };

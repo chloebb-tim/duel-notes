@@ -54,13 +54,10 @@ const Hero = ({ }) => {
                         </p>
                         <br />
                         <p >
-                            Trouve un duel qui t’inspire, puis fais-le à ta façon<br />
-
-                            Avec les mêmes paroles posées sur le même son<br />
-
-                            Tu peux aussi lancer ton propre défi vocal<br />
-
-                            Donne le meilleur de toi et attends ton rival<br />
+                            Quand tu as terminé, n’oublie pas de voter<br />
+                            Les duels les plus aimés sont toujours affichés<br />
+                            Pour chaque duel écouté, choisis la meilleure voix<br />
+                            Ça peut être difficile, car tu n’as qu’un seul choix<br />
                         </p>
                     </div>
                 </div>
