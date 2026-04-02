@@ -1,8 +1,8 @@
 import "server-only";
 import { db } from "@/db";
-import { duelsTable, enregistrements } from "@/db/schemas/schema";
+import { duelsTable, enregistrements, votes } from "@/db/schemas/schema";
 import { user } from "@/db/schemas/auth-schema";
-import { desc, eq, isNull, isNotNull } from "drizzle-orm";
+import { desc, eq, isNull, isNotNull, inArray } from "drizzle-orm";
 
 // export const enregistrerNouveau = async (songChoice, chanteur1id, duelId) => {
 //   return db.insert(enregistrements).values({
@@ -125,4 +125,12 @@ export async function getDuelscomplets() {
   );
 
   return duelsAvecNoms;
+}
+
+export async function getVotesDuUser(userId, duelIds) {
+  if (!userId || duelIds.length === 0) return {};
+  const rows = await db.select().from(votes)
+    .where(inArray(votes.duelId, duelIds));
+  const monVote = rows.filter(v => v.userId === userId);
+  return Object.fromEntries(monVote.map(v => [v.duelId, v.enregistrementId]));
 }

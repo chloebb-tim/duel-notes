@@ -1,4 +1,4 @@
-import { sqliteTable, integer, text } from "drizzle-orm/sqlite-core";
+import { sqliteTable, integer, text, unique } from "drizzle-orm/sqlite-core";
 import { relations, sql } from "drizzle-orm";
 
 export const duelsTable = sqliteTable("duels", {
@@ -49,3 +49,12 @@ export const enregistrementsRelations = relations(enregistrements, ({ one }) => 
   }),
 
 }));
+
+export const votes = sqliteTable("votes", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  userId: text("user_id").notNull(),
+  duelId: integer("duel_id").notNull(),
+  enregistrementId: integer("enregistrement_id").notNull(),
+}, (table) => [
+  unique().on(table.userId, table.duelId),
+]);

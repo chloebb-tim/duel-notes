@@ -8,6 +8,30 @@ import Signout from "../signout/page.jsx";
 const Header = () => {
   return (
     <header className="header">
+      <div className="headerInner">
+        <Link className="logo" href="/"><img src="/Images/svg/logo.svg" alt="Logo" /></Link>
+
+        <div className="menu">
+          <nav className="navigation">
+            <Link className="navhover" href="/voter">Voter</Link>
+            <Link className="navhover" href="/duels">Duels</Link>
+          </nav>
+          {/* <div aria-label="profile"> */}
+          {/* <img className="profile" aria-label="profile" src="/Images/svg/icon_profil_noir.svg" alt="Icon du profil" /> */}
+          {/* </div> */}
+
+          <div className="profil">
+            <details>
+              <summary ><img className="profile" aria-label="profile" src="/Images/svg/icon_profil_noir.svg" alt="Icon du profil" /></summary>
+
+              <div className="menuprofil btnDeconnexion">
+                <Signout />
+              </div>
+            </details>
+          </div>
+          <img className="tige" src="/Images/svg/tige.svg" alt="Tige" />
+        </div>
+      </div>
 
       {/* Vague fait à l'aide de Shape Divider App */}
       <div className="custom-shape-divider-top-1774999941">
@@ -22,31 +46,6 @@ const Header = () => {
             className="shape-fill"
           ></path>
         </svg>
-      </div>
-
-      <Link className="logo" href="/"><img src="/Images/svg/logo.svg" alt="Logo" /></Link>
-      <div className="temps">
-        TIMEUR
-      </div>
-      <div className="menu">
-        <nav className="navigation">
-          <Link className="navhover" href="/voter">Voter</Link>
-          <Link className="navhover" href="/duels">Duels</Link>
-        </nav>
-        {/* <div aria-label="profile"> */}
-        {/* <img className="profile" aria-label="profile" src="/Images/svg/icon_profil_noir.svg" alt="Icon du profil" /> */}
-        {/* </div> */}
-
-        <div className="profil">
-          <details>
-            <summary ><img className="profile" aria-label="profile" src="/Images/svg/icon_profil_noir.svg" alt="Icon du profil" /></summary>
-
-            <div className="menuprofil btnDeconnexion">
-              <Signout />
-            </div>
-          </details>
-        </div>
-        <img className="tige" src="/Images/svg/tige.svg" alt="Tige" />
       </div>
     </header>
   );
