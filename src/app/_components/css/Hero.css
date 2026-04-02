@@ -9,8 +9,6 @@
     flex-direction: column;
     justify-content: center;
     gap: 25px;
-
-    /* padding: 400px; */
 }
 
 .titre {
@@ -23,7 +21,21 @@
 }
 
 .textHero {
+    display: flex;
+    gap: 170px;
+    align-items: center;
     width: min(100%, 1500px);
     margin: 0 auto;
     padding: 50px 100px;
+}
+
+.btnVoirDuels {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.cle {
+    width: 150px;
+    rotate: calc(20deg);
 }
