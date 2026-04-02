@@ -8,6 +8,7 @@ import "./record.css";
 import { useState, useRef, useEffect, Suspense } from "react";
 
 const PageJoin = () => {
+ const RETARD_GOSSANT_ESTI = 200;
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
   const [songChoice, setSongChoice] = useState("chanson1");
@@ -22,6 +23,8 @@ const PageJoin = () => {
   const musicElementRef = useRef(null);
   const musicSourceRef = useRef(null);
   const micStreamRef = useRef(null);
+  const mixContextRef = useRef(null);
+  const mixSourcesRef = useRef({ music: null, voice: null });
   const [countdown, setCountdown] = useState(null);
   const searchParams = useSearchParams();
   const duelId = Number(searchParams.get("duelId"));
@@ -75,6 +78,33 @@ const PageJoin = () => {
 
   const getSongUrl = (choice) =>
     choice === "chanson1" ? "/chanson1.mp3" : "/chanson2.mp3";
+
+  const stopMixPlayback = async () => {
+    const { music, voice } = mixSourcesRef.current;
+
+    if (music) {
+      try {
+        music.stop();
+      } catch {}
+      music.disconnect();
+    }
+
+    if (voice) {
+      try {
+        voice.stop();
+      } catch {}
+      voice.disconnect();
+    }
+
+    mixSourcesRef.current = { music: null, voice: null };
+
+    if (mixContextRef.current) {
+      await mixContextRef.current.close().catch(() => {});
+      mixContextRef.current = null;
+    }
+
+    setIsMixPlaying(false);
+  };
 
   const handleToggleSongPreview = async () => {
     if (!musicRef.current) return;
@@ -162,15 +192,7 @@ const PageJoin = () => {
     }
 
     if (isMixPlaying) {
-      if (musicRef.current) {
-        musicRef.current.pause();
-        musicRef.current.currentTime = 0;
-      }
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-      }
-      setIsMixPlaying(false);
+      await stopMixPlayback();
     }
 
     const stream = await navigator.mediaDevices.getUserMedia({
@@ -303,27 +325,65 @@ const PageJoin = () => {
   const uploadButtonRef = useRef(null);
 
   const handlePlayMix = async () => {
-    if (!audioBlob || !musicRef.current || !audioRef.current) return;
+    if (!audioBlob) return;
 
-    const musicAudio = musicRef.current;
-    const voiceAudio = audioRef.current;
+    await stopMixPlayback();
 
-    const voiceUrl = URL.createObjectURL(audioBlob);
-    voiceAudio.src = voiceUrl;
-    voiceAudio.currentTime = 0;
+    const songUrl = getSongUrl(songChoice);
+    const mixContext = new window.AudioContext();
+    mixContextRef.current = mixContext;
 
-    musicAudio.src =
-      songChoice === "chanson1" ? "/chanson1.mp3" : "/chanson2.mp3";
-    musicAudio.currentTime = 0;
+    try {
+      const [songArrayBuffer, voiceArrayBuffer] = await Promise.all([
+        fetch(songUrl).then((res) => res.arrayBuffer()),
+        audioBlob.arrayBuffer(),
+      ]);
 
-    await Promise.all([musicAudio.play(), voiceAudio.play()]);
-    setIsMixPlaying(true);
+      const [songBuffer, voiceBuffer] = await Promise.all([
+        mixContext.decodeAudioData(songArrayBuffer.slice(0)),
+        mixContext.decodeAudioData(voiceArrayBuffer.slice(0)),
+      ]);
+
+      const songSource = mixContext.createBufferSource();
+      songSource.buffer = songBuffer;
+      const voiceSource = mixContext.createBufferSource();
+      voiceSource.buffer = voiceBuffer;
+
+      const songGain = mixContext.createGain();
+      songGain.gain.value = 0.75;
+      const voiceGain = mixContext.createGain();
+      voiceGain.gain.value = 1;
+
+      songSource.connect(songGain).connect(mixContext.destination);
+      voiceSource.connect(voiceGain).connect(mixContext.destination);
+
+      mixSourcesRef.current = { music: songSource, voice: voiceSource };
+
+      songSource.onended = () => {
+        if (mixContextRef.current === mixContext) {
+          stopMixPlayback();
+        }
+      };
+      voiceSource.onended = () => {
+        if (mixContextRef.current === mixContext) {
+          stopMixPlayback();
+        }
+      };
+
+      await mixContext.resume();
+      const startAt = mixContext.currentTime + 0.05;
+      songSource.start(startAt + RETARD_GOSSANT_ESTI / 1000);
+      voiceSource.start(startAt);
+
+      setIsMixPlaying(true);
+    } catch (error) {
+      console.error("Unable to play synchronized mix:", error);
+      await stopMixPlayback();
+    }
   };
 
   const handleStopMix = () => {
-    if (musicRef.current) musicRef.current.pause();
-    if (audioRef.current) audioRef.current.pause();
-    setIsMixPlaying(false);
+    stopMixPlayback();
   };
 
   const handlePublish = async () => {

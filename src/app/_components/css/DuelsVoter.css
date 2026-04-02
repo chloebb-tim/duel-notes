@@ -2,100 +2,324 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin: 80px 100px 45px 100px;
+    margin: 80px 24px 45px 24px;
 }
 
-/* .gridVote {
+.gridVote {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 15px;
-} */
+    width: min(100%, 980px);
+    margin: 0 auto;
+}
 
 .listeVote {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 15px;
     background-color: var(--bleu_marine);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-    padding: 35px;
-    border-radius: 50px;
+    padding: 20px 25px;
+    border-radius: 20px;
 }
 
 .listeVote h1,
+.listeVote h2,
 .listeVote p {
     color: white;
 }
 
+.titreChanson {
+    text-align: center;
+    padding-bottom: 12px;
+    border-bottom: 2px dotted rgba(255, 255, 255, 0.3);
+}
+
+.titreChanson h2 {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 .duelsVote {
     display: flex;
-    justify-content: space-around;
-    gap: 25px;
+    align-items: center;
+    gap: 10px;
 }
 
 .infoChanteur {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 12px;
+    flex: 1;
 }
 
 .information {
-    min-width: 45px;
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    padding-right: 30px;
+}
+
+.nomChanteur {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.menuSignalement {
+    position: absolute;
+    top: -2px;
+    right: 0;
+}
+
+.menuSignalement summary {
+    list-style: none;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+    padding: 1px 6px;
+    border-radius: 8px;
+    user-select: none;
+}
+
+.menuSignalement summary:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.menuSignalement summary::-webkit-details-marker {
+    display: none;
+}
+
+.btnSignaler {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    border: 1px solid #e5e7eb;
+    background: white;
+    color: #111827;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+    white-space: nowrap;
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 12;
+}
+
+.btnSignaler:hover {
+    background: #f9fafb;
+}
+
+.dateEnregistrement {
+    font-size: 13px;
+    font-style: italic;
+    color: #7dd3fc;
 }
 
 .ligne {
     border-left: 2px dotted white;
-    height: 100px;
-    margin: 0px 25px;
+    height: 70px;
+    margin: 0 10px;
+    flex-shrink: 0;
 }
 
 .play {
-    width: 35px;
+    width: 28px;
+    flex-shrink: 0;
+}
+
+.playButton {
+    background: transparent;
+    border: none;
+    padding: 4px;
+    border-radius: 999px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.playButton:hover:not(:disabled) {
+    background: rgba(125, 211, 252, 0.18);
+}
+
+.playButtonActif {
+    background: rgba(125, 211, 252, 0.28);
+}
+
+.playButton:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
 }
 
 .venyl {
-    width: 100px;
-}
-
-h1 {
-    font-size: 25px;
+    width: 60px;
+    flex-shrink: 0;
 }
 
 .like {
     display: flex;
-    gap: 15px;
+    gap: 8px;
     align-items: center;
+    margin-top: 4px;
+}
+
+.boutonVote {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 20px;
+    transition: background 0.2s;
+}
+
+.boutonVote p {
+    color: white;
+    font-size: 16px;
+}
+
+.boutonVote:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.boutonVote.vote-actif {
+    background: rgba(125, 211, 252, 0.2);
+}
+
+.boutonVote.vote-actif .coeur {
+    filter: brightness(0) saturate(100%) invert(74%) sepia(60%) saturate(400%) hue-rotate(180deg);
+}
+
+.boutonVote.vote-desactive {
+    opacity: 0.35;
+    cursor: pointer;
 }
 
 .coeur {
-    width: 35px;
+    width: 22px;
 }
 
 .filtre {
-    width: 200px;
-    text-align: center;
+    position: relative;
+    width: min(100%, 980px);
+    margin: 0 auto;
+    text-align: left;
+    z-index: 20;
+}
+
+.filtre details {
+    position: relative;
+    width: fit-content;
+}
+
+.filtre summary {
+    cursor: pointer;
+    user-select: none;
+}
+
+.filtre summary::-webkit-details-marker {
+    display: none;
+}
+
+.filtre .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.filtre .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
 }
 
 .menuFiltre {
-    margin-top: 10px;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
     background: white;
     color: black;
-    border-radius: 20px;
-    padding: 15px;
-    width: 200px;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
+    border-radius: 16px;
+    padding: 14px;
+    width: 250px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.22);
+    text-align: left;
+    backdrop-filter: blur(2px);
 }
 
-.menuFiltre p {
-    color: black;
+.filtreGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
 }
 
-.menuFiltre p:hover {
-    color: var(--orange);
+.filtreGroup label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.filtreGroup select {
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-size: 14px;
+    background: white;
+    color: #111827;
+    outline: none;
+}
+
+.filtreGroup select:focus {
+    border-color: #fb7e68;
+    box-shadow: 0 0 0 3px rgba(251, 126, 104, 0.2);
 }
 
 .separateur {
     border-bottom: 2px dotted rgb(190, 190, 190);
     margin: 10px 0;
+}
+
+.paginationDuels {
+    width: min(100%, 980px);
+    margin: 8px auto 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.paginationBtn {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(8, 33, 53, 0.75);
+    color: white;
+    border-radius: 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.paginationBtn:hover:not(:disabled) {
+    background: rgba(8, 33, 53, 0.95);
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+.paginationBtnActif {
+    background: var(--orange);
+    border-color: transparent;
+}
+
+.paginationBtn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
 }
