@@ -61,6 +61,7 @@
 
 .actions_palmares {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 18px;
     min-height: 32px;
@@ -124,7 +125,11 @@ p {
 .likes_palmares {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 10px;
+}
+
+.likes_palmares img {
+    width: 25px;
 }
 
 .play_palmares:hover {
