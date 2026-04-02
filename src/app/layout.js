@@ -1,10 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
-import Head from "next/head";
-
 import "./_components/css/Bouton.css";
-
+import Head from "next/head";
 
 // import Header from "@/app/_components/Header";
 
