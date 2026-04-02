@@ -27,25 +27,24 @@ const Hero = ({ }) => {
 
     return (
         <div className="instructions">
-            {/* <div className="hero"> */}
             <div className="textHero">
                 <div>
                     <h1 className="titre">Instructions</h1>
                     <div className="alexandrin">
                         <p >
-                            C’est une arène féroce, ici la voix fait loi <br />
+                            C’est le Duel des Notes, exprime toute ta passion <br />
 
-                            Même musique pour deux, mais chacun sa version,<br />
+                            La même musique pour deux, mais chacun sa version<br />
 
-                            Rejoins le Duel des Notes, chante avec passion<br />
+                            C’est une arène féroce, ici la voix fait loi<br />
 
-                            Pour réussir à gagner, deux choix s’offrent à toi<br />
+                            Pour avoir la victoire, deux options s’offrent à toi<br />
                         </p>
                         <br />
                         <p >
-                            Trouve un duel qui t’inspire, puis fais-le à ta façon<br />
+                            Trouve un duel qui t’inspire, fais-le à ta façon<br />
 
-                            Avec les mêmes paroles posées sur le même son<br />
+                            Avec les mêmes paroles, posées sur le même son<br />
 
                             Tu peux aussi lancer ton propre défi vocal<br />
 
@@ -55,20 +54,17 @@ const Hero = ({ }) => {
                         <br />
                         <p >
                             Quand tu as terminé, n’oublie pas de voter<br />
+
                             Les duels les plus aimés sont toujours affichés<br />
+
                             Pour chaque duel écouté, choisis la meilleure voix<br />
+
                             Ça peut être difficile, car tu n’as qu’un seul choix<br />
                         </p>
                     </div>
                 </div>
-{/* 
-                <div className="btnVoirDuels ">
-                    <button className="btn" onClick={() => window.location.href = "/duels"}>Voir les duels</button>
-                    <img className="cle" src="/Images/svg/CleDeSol.svg" alt="Clé de sol" />
-                </div> */}
-            </div>
-            {/* </div> */}
 
+            </div>
         </div>
     )
 }

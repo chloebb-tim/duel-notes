@@ -16,10 +16,6 @@ const Header = () => {
             <Link className="navhover btn" href="/voter">Voter</Link>
             <Link className="navhover btn" href="/duels">Duels</Link>
           </nav>
-          {/* <div aria-label="profile"> */}
-          {/* <img className="profile" aria-label="profile" src="/Images/svg/icon_profil_noir.svg" alt="Icon du profil" /> */}
-          {/* </div> */}
-
           <div className="profil">
             <details>
               <summary ><img className="profile" aria-label="profile" src="/Images/svg/icon_profil_noir.svg" alt="Icon du profil" /></summary>
