@@ -24,19 +24,29 @@ const SignInClient = () => {
   };
 
   return (
-    <AuthForm
-      titre="Connexion"
-      showName={false}
-      formAction={submitAction}
-      ctaTitle="Se connecter"
-    >
-      <p className="compteText">
-        Vous voulez créer un compte ?{" "}
-        <a href="/signup">
-          Inscrivez-vous
-        </a>
-      </p>
-    </AuthForm>
+    // <div className="popopOverlay">
+    //   <div className="popop">
+
+    //     <span className="fermerBtn" onClick={() => setIsOpen(false)}>
+    //       ✕
+    //     </span>
+
+        <AuthForm
+          titre="Connexion"
+          showName={false}
+          formAction={submitAction}
+          ctaTitle="Se connecter"
+        >
+          <p className="compteText">
+            Vous voulez créer un compte ?{" "}
+            <a href="/signup">
+              Inscrivez-vous
+            </a>
+          </p>
+        </AuthForm>
+
+    //   </div>
+    // </div>
   );
 };
 export default SignInClient;
