@@ -78,3 +78,42 @@ p {
     transform: scale(1.2);
     transition: transform 0.3s ease;
 }
+
+/*À voir si ça reste cohérent...*/
+@media (max-width: 1700px) {
+
+    .etoile2,
+    .etoile1,
+    .etoile3 {
+        position: absolute;
+        top: -90;
+        left: 150;
+    }
+}
+
+@media (max-width: 2000px) {
+
+    .etoile2,
+    .etoile1,
+    .etoile3 {
+        position: absolute;
+        top: -90;
+        left: 210;
+    }
+
+    .palmares {
+        padding: 300px 100px 100px 100px;
+
+    }
+}
+
+@media (max-width: 2500px) {
+
+    .etoile2,
+    .etoile1,
+    .etoile3 {
+        position: absolute;
+        top: -90;
+        left: 190;
+    }
+}
