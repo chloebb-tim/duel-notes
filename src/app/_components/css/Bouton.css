@@ -18,3 +18,9 @@
     background-color: #b44732;
 
 }
+
+.inline {
+    display: inline-block;
+    width: auto;
+    align-self: flex-start;
+}

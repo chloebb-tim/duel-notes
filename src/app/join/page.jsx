@@ -3,10 +3,11 @@
 //- enleve boutons quand on enregistre? looks weird rn. ou les garder mais disabled? that would be prettier?
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import "./record.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, Suspense } from "react";
 
-const PageRecord = () => {
+const PageJoin = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
   const [songChoice, setSongChoice] = useState("chanson1");
@@ -22,6 +23,21 @@ const PageRecord = () => {
   const musicSourceRef = useRef(null);
   const micStreamRef = useRef(null);
   const [countdown, setCountdown] = useState(null);
+  const searchParams = useSearchParams();
+  const duelId = Number(searchParams.get("duelId"));
+
+  useEffect(() => {
+    const loadDuel = async () => {
+      if (!duelId) return;
+      const res = await fetch(`/api/recordings?duelId=${duelId}`);
+      if (!res.ok) return;
+      const data = await res.json();
+      if (data?.duel?.songChoice) {
+        setSongChoice(data.duel.songChoice);
+      }
+    };
+    loadDuel();
+  }, [duelId]);
 
   const runCountdown = async () => {
     setCountdown(3);
@@ -348,7 +364,7 @@ const PageRecord = () => {
           songChoice,
           voiceUrl: url,
           voiceUploadthingKey: key,
-          // pas de duelId: crée toujours un nouveau duel
+          duelId, // toujours envoyé (chanteur 2)
         }),
         headers: { "Content-Type": "application/json" },
       });
@@ -393,7 +409,7 @@ const PageRecord = () => {
                 }
               }}
               className="song-select"
-              disabled={isRecording}
+              disabled={isRecording || true}
             >
               <option value="chanson1">chanson 1</option>
               <option value="chanson2">chanson 2</option>
@@ -482,4 +498,10 @@ const PageRecord = () => {
   );
 };
 
-export default PageRecord;
+const Page = () => (
+  <Suspense fallback={<div>Chargement...</div>}>
+    <PageJoin />
+  </Suspense>
+);
+
+export default Page;

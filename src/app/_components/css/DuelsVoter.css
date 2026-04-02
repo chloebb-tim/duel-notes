@@ -23,6 +23,11 @@
     /* text-align: center; */
 }
 
+.listeVote h1,
+.listeVote p {
+    color: white;
+}
+
 .duelsVote {
     display: flex;
     justify-content: space-around;
@@ -82,6 +87,10 @@ h1 {
     width: 200px;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
+}
+
+.menuFiltre p {
+    color: black;
 }
 
 .menuFiltre p:hover {

@@ -2,45 +2,42 @@ import Link from "next/link";
 
 import "./css/ListeDuels.css";
 import "./css/Bouton.css";
+import { getDuelsIncomplets } from "../_data/data_recording";
 
-const ListeDuels = ({ }) => {
-    return (
-        <div className="PageDuels">
 
-            <Link href="/">
-                <button className="btn">Nouveau Duel</button>
-            </Link>
+const ListeDuels = async () => {
+  const duels = await getDuelsIncomplets();
+  return (
+    <div className="PageDuels">
+      <Link href="/record" className="btn inline">
+        Nouveau duel
+      </Link>
 
-            <div className="gridDuels">
-                <div className="listeDuels">
-                    <h1>Titre de la chansons</h1>
-                    <div className="infoChanteur">
-                        <img className="play" src="/Images/svg/play_bleu.svg" alt="Icon d'un play" />
-                        <img className="venyl" src="/Images/svg/venyl.svg" alt="Icon d'un Venyl" />
-                        <div>
-                            <p>Date</p>
-                            <p>Nom du chanteur 01</p>
-                        </div>
-                        <div className="ligne"></div>
-                        <button className="btn">Faire ce duel</button>
-                    </div>
-                </div>
-                <div className="listeDuels">
-                    <h1>Titre de la chansons</h1>
-                    <div className="infoChanteur">
-                        <img className="play" src="/Images/svg/play_bleu.svg" alt="Icon d'un play" />
-                        <img className="venyl" src="/Images/svg/venyl.svg" alt="Icon d'un Venyl" />
-                        <div>
-                            <p>Date</p>
-                            <p>Nom du chanteur 01</p>
-                        </div>
-                        <div className="ligne"></div>
-                        <button className="btn">Faire ce duel</button>
-                    </div>
-                </div>
+      <div className="gridDuels">
+        {duels.map((duel) => (
+          <div className="listeDuels" key={duel.id}>
+            <h1>{duel.songChoice ?? "Chanson inconnue"}</h1>
+
+            <div className="infoChanteur">
+              <img className="play" src="/Images/svg/play_bleu.svg" alt="Play" />
+              <img className="venyl" src="/Images/svg/venyl.svg" alt="Venyl" />
+
+              <div>
+                <p>Duel #{duel.id}</p>
+                <p>En attente du 2e chanteur</p>
+              </div>
+
+              <div className="ligne"></div>
+
+              <Link href={`/join?duelId=${duel.id}`} className="btn">
+                Faire ce duel
+              </Link>
             </div>
-        </div>
-    )
-}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default ListeDuels;
