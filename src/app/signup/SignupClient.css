@@ -24,6 +24,7 @@ form {
   border-radius: 20px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
   width: 600px;
+  height: 600px;
   color: black;
 }
 
