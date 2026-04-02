@@ -108,6 +108,57 @@
   transform: scale(1.03);
 }
 
+.song-versions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.song-version-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+
+.song-version-label {
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  flex: 1;
+}
+
+.song-card-preview-btn.small {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.song-card-preview-btn.small .material-icons {
+  font-size: 22px;
+}
+
+.song-version-choose-btn {
+  background-color: #d7573c;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.song-version-choose-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}
+
 .song-chosen-name {
   color: white;
   font-size: 16px;

@@ -114,7 +114,6 @@ export async function getDuelscomplets() {
     },
   });
 
-  // récupérer les noms des users pour chaque enregistrement
   const duelsAvecNoms = await Promise.all(
     duels.map(async (duel) => {
       const user1 = duel.premierChanteur

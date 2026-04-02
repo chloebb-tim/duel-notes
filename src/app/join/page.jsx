@@ -258,8 +258,7 @@ const PageJoin = () => {
       setIsMusicPlaying(false);
     };
 
-    const musicUrl =
-      songChoice === "chanson1" ? "/chanson1.mp3" : "/chanson2.mp3";
+    const musicUrl = getSongUrl(songChoice);
 
     const audioContext = new window.AudioContext();
     audioContextRef.current = audioContext;

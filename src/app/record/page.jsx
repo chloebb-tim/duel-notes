@@ -7,7 +7,7 @@ import "./record.css";
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
-import { SONGS, getSongUrl } from "@/app/_data/songMetadata";
+import { SONGS, SONG_GROUPS, getSongUrl } from "@/app/_data/songMetadata";
 
 import Header from "@/app/_components/Header";
 
@@ -16,7 +16,7 @@ const PageRecord = () => {
   const RETARD_GOSSANT_ESTI = 200;
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
-  const [songChoice, setSongChoice] = useState("chanson1");
+  const [songChoice, setSongChoice] = useState("chanson1_v1");
   const [isUploading, setIsUploading] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [isMixPlaying, setIsMixPlaying] = useState(false);
@@ -245,8 +245,7 @@ const PageRecord = () => {
       setIsMusicPlaying(false);
     };
 
-    const musicUrl =
-      songChoice === "chanson1" ? "/chanson1.mp3" : "/chanson2.mp3";
+    const musicUrl = getSongUrl(songChoice);
 
     const audioContext = new window.AudioContext();
     audioContextRef.current = audioContext;
@@ -467,30 +466,33 @@ const PageRecord = () => {
           <audio ref={musicRef} preload="auto" hidden />
           <h1 className="choose-title">Choisis une chanson</h1>
           <div className="song-cards">
-            {[
-              { key: "chanson1", label: SONGS.chanson1.title },
-              { key: "chanson2", label: SONGS.chanson2.title },
-            ].map(({ key, label }) => (
-              <div key={key} className="song-card">
-                <h2 className="song-card-title">{label}</h2>
-                <button
-                  type="button"
-                  className={`song-card-preview-btn${previewingCard === key ? " previewing" : ""}`}
-                  onClick={() => handlePreviewCard(key)}
-                  aria-label={previewingCard === key ? "Pause" : "Écouter"}
-                >
-                  <span className="material-icons">
-                    {previewingCard === key ? "pause" : "play_arrow"}
-                  </span>
-                </button>
-                <p className="song-card-hint">Écoute avant de choisir</p>
-                <button
-                  type="button"
-                  className="song-card-choose-btn"
-                  onClick={() => handleChooseSong(key)}
-                >
-                  Choisir
-                </button>
+            {SONG_GROUPS.map((group) => (
+              <div key={group.key} className="song-card">
+                <h2 className="song-card-title">{group.title}</h2>
+                <div className="song-versions">
+                  {group.versions.map((vkey, i) => (
+                    <div key={vkey} className="song-version-row">
+                      <span className="song-version-label">Version {i + 1}</span>
+                      <button
+                        type="button"
+                        className={`song-card-preview-btn small${previewingCard === vkey ? " previewing" : ""}`}
+                        onClick={() => handlePreviewCard(vkey)}
+                        aria-label={previewingCard === vkey ? "Pause" : "Écouter"}
+                      >
+                        <span className="material-icons">
+                          {previewingCard === vkey ? "pause" : "play_arrow"}
+                        </span>
+                      </button>
+                      <button
+                        type="button"
+                        className="song-version-choose-btn"
+                        onClick={() => handleChooseSong(vkey)}
+                      >
+                        Choisir
+                      </button>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
