@@ -78,3 +78,19 @@ p {
     transform: scale(1.2);
     transition: transform 0.3s ease;
 }
+
+@media (min-width: 2000px) {
+
+    .etoile2,
+    .etoile1,
+    .etoile3 {
+        position: absolute;
+        top: -90px;
+        left: 210px;
+    }
+
+    .palmares {
+        padding: 300px 100px 100px 100px;
+
+    }
+}
