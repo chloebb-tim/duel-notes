@@ -403,7 +403,8 @@ const PageRecord = () => {
             ].map(({ key, label }) => (
               <div key={key} className="song-card">
                 <h2 className="song-card-title">{label}</h2>
-                <button
+                <div className="contenuChoose">
+                  <button
                   type="button"
                   className={`song-card-preview-btn${previewingCard === key ? " previewing" : ""}`}
                   onClick={() => handlePreviewCard(key)}
@@ -421,6 +422,8 @@ const PageRecord = () => {
                 >
                   Choisir
                 </button>
+                </div>
+                
               </div>
             ))}
           </div>

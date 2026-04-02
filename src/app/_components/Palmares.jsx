@@ -130,7 +130,7 @@ const Palmares = ({ topDuels = [] }) => {
                         <div className="info_palmares">
                             <p>{duel2 ? getDisplayName(duel2.premierChanteur) : "—"}</p>
                             <div className="actions_palmares">
-                                <p className="likes_palmares">{duel2 && <>{duel2.premierChanteur?.nbLikes ?? 0} <img className="coeur_palmares" src="/Images/svg/coeur.svg" alt="coeur" /></>}</p>
+                                <p className="likes_palmares"><img className="coeur_palmares" src="/Images/svg/coeur_2.svg" alt="coeur" />{duel2 && <>{duel2.premierChanteur?.nbLikes ?? 0} </>}</p>
                                 <button
                                     className="btn_play_palmares"
                                     type="button"
@@ -150,7 +150,7 @@ const Palmares = ({ topDuels = [] }) => {
                         <div className="info_palmares">
                             <p>{duel2 ? getDisplayName(duel2.deuxiemeChanteur) : "—"}</p>
                             <div className="actions_palmares">
-                                <p className="likes_palmares">{duel2 && <>{duel2.deuxiemeChanteur?.nbLikes ?? 0} <img className="coeur_palmares" src="/Images/svg/coeur.svg" alt="coeur" /></>}</p>
+                                <p className="likes_palmares"><img className="coeur_palmares" src="/Images/svg/coeur_2.svg" alt="coeur" />{duel2 && <>{duel2.deuxiemeChanteur?.nbLikes ?? 0} </>}</p>
                                 <button
                                     className="btn_play_palmares"
                                     type="button"
@@ -177,7 +177,7 @@ const Palmares = ({ topDuels = [] }) => {
                         <div className="info_palmares">
                             <p>{duel1 ? getDisplayName(duel1.premierChanteur) : "—"}</p>
                             <div className="actions_palmares">
-                                <p className="likes_palmares">{duel1 && <>{duel1.premierChanteur?.nbLikes ?? 0} <img className="coeur_palmares" src="/Images/svg/coeur.svg" alt="coeur" /></>}</p>
+                                <p className="likes_palmares"><img className="coeur_palmares" src="/Images/svg/coeur_1.svg" alt="coeur" />{duel1 && <>{duel1.premierChanteur?.nbLikes ?? 0} </>}</p>
                                 <button
                                     className="btn_play_palmares"
                                     type="button"
@@ -197,7 +197,7 @@ const Palmares = ({ topDuels = [] }) => {
                         <div className="info_palmares">
                             <p>{duel1 ? getDisplayName(duel1.deuxiemeChanteur) : "—"}</p>
                             <div className="actions_palmares">
-                                <p className="likes_palmares">{duel1 && <>{duel1.deuxiemeChanteur?.nbLikes ?? 0} <img className="coeur_palmares" src="/Images/svg/coeur.svg" alt="coeur" /></>}</p>
+                                <p className="likes_palmares"><img className="coeur_palmares" src="/Images/svg/coeur_1.svg" alt="coeur" />{duel1 && <>{duel1.deuxiemeChanteur?.nbLikes ?? 0} </>}</p>
                                 <button
                                     className="btn_play_palmares"
                                     type="button"
@@ -224,7 +224,7 @@ const Palmares = ({ topDuels = [] }) => {
                         <div className="info_palmares">
                             <p>{duel3 ? getDisplayName(duel3.premierChanteur) : "—"}</p>
                             <div className="actions_palmares">
-                                <p className="likes_palmares">{duel3 && <>{duel3.premierChanteur?.nbLikes ?? 0} <img className="coeur_palmares" src="/Images/svg/coeur.svg" alt="coeur" /></>}</p>
+                                <p className="likes_palmares">{duel3 && <><img className="coeur_palmares" src="/Images/svg/coeur_3.svg" alt="coeur" />{duel3.premierChanteur?.nbLikes ?? 0} </>}</p>
                                 <button
                                     className="btn_play_palmares"
                                     type="button"
@@ -244,7 +244,7 @@ const Palmares = ({ topDuels = [] }) => {
                         <div className="info_palmares">
                             <p>{duel3 ? getDisplayName(duel3.deuxiemeChanteur) : "—"}</p>
                             <div className="actions_palmares">
-                                <p className="likes_palmares">{duel3 && <>{duel3.deuxiemeChanteur?.nbLikes ?? 0} <img className="coeur_palmares" src="/Images/svg/coeur.svg" alt="coeur" /></>}</p>
+                                <p className="likes_palmares">{duel3 && <><img className="coeur_palmares" src="/Images/svg/coeur_3.svg" alt="coeur" />{duel3.deuxiemeChanteur?.nbLikes ?? 0} </>}</p>
                                 <button
                                     className="btn_play_palmares"
                                     type="button"
