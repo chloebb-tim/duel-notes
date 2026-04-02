@@ -80,7 +80,7 @@ p {
 }
 
 /*À voir si ça reste cohérent...*/
-@media (max-width: 1700px) {
+@media (max-width: 1500px) {
 
     .etoile2,
     .etoile1,
