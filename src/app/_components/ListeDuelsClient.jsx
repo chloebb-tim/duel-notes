@@ -192,7 +192,7 @@ const DuelIncompletCard = ({ duel, activePlaybackKey, setActivePlaybackKey }) =>
     if (detailsElement) {
       detailsElement.open = false;
     }
-    toast.info("Signalement recu. L'equipe de moderation va evaluer la situation.");
+    toast.info("Signalement reçu. L'équipe de modération va évaluer la situation.");
   };
 
   const chanteur = duel.premierChanteur;
