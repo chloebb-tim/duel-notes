@@ -24,13 +24,6 @@ const SignInClient = () => {
   };
 
   return (
-    // <div className="popopOverlay">
-    //   <div className="popop">
-
-    //     <span className="fermerBtn" onClick={() => setIsOpen(false)}>
-    //       ✕
-    //     </span>
-
         <AuthForm
           titre="Connexion"
           showName={false}
@@ -44,9 +37,6 @@ const SignInClient = () => {
             </a>
           </p>
         </AuthForm>
-
-    //   </div>
-    // </div>
   );
 };
 export default SignInClient;

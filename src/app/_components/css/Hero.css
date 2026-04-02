@@ -9,14 +9,21 @@
     flex-direction: column;
     justify-content: center;
     gap: 25px;
-    padding: 100px;
+
+    /* padding: 400px; */
 }
 
 .titre {
     font-size: 60px;
+    font-family: 'Musician', sans-serif;
 }
 
 .alexandrin {
     opacity: 0;
-    
+}
+
+.textHero {
+    width: min(100%, 1500px);
+    margin: 0 auto;
+    padding: 50px 100px;
 }

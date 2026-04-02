@@ -53,7 +53,8 @@
 }
 
 h2 {
-    font-size: 35px;
+    font-size: 25px;
+    font-weight: bold;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -80,40 +81,81 @@ p {
 }
 
 /*À voir si ça reste cohérent...*/
-@media (max-width: 1700px) {
+@media (min-width: 1000px) {
 
     .etoile2,
     .etoile1,
     .etoile3 {
         position: absolute;
-        top: -90;
-        left: 150;
+        top: -130;
+        left: 50;
     }
 }
 
-@media (max-width: 2000px) {
+@media (min-width: 1200px) {
 
     .etoile2,
     .etoile1,
     .etoile3 {
         position: absolute;
-        top: -90;
-        left: 210;
+        top: -110;
+        left: 75;
+    }
+}
+
+@media (min-width: 1500px) {
+
+    .etoile2,
+    .etoile1,
+    .etoile3 {
+        position: absolute;
+        top: -100;
+        left: 130;
+    }
+}
+
+@media (min-width: 1800px) {
+
+    .etoile2,
+    .etoile1,
+    .etoile3 {
+        position: absolute;
+        top: -100;
+        left: 175;
+    }
+}
+
+@media (min-width: 2000px) {
+
+    .etoile2,
+    .etoile1,
+    .etoile3 {
+        position: absolute;
+        top: -100;
+        left: 190;
     }
 
     .palmares {
-        padding: 300px 100px 100px 100px;
-
+        padding: 300px 150px 75px 150px;
     }
 }
 
-@media (max-width: 2500px) {
+@media (min-width: 2200px) {
 
     .etoile2,
     .etoile1,
     .etoile3 {
         position: absolute;
-        top: -90;
-        left: 190;
+        top: -100;
+        left: 225;
+    }
+
+    .palmares {
+        background-image: url(/Images/jpg/background_palmares.jpg);
+        background-repeat: repeat;
+        background-position: top;
+        background-size: cover;
+
+        /* padding: 150px; */
     }
 }
