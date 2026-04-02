@@ -32,14 +32,14 @@
 
 .titreChanson {
     text-align: center;
-    padding-bottom: 12px;
+    /* padding-bottom: 12px; */
     border-bottom: 2px dotted rgba(255, 255, 255, 0.3);
 }
 
 .titreChanson h2 {
     font-size: 20px;
     font-weight: bold;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     letter-spacing: 1px;
 }
 

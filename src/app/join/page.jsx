@@ -9,6 +9,8 @@ import { useState, useRef, useEffect, Suspense } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { SONGS, getSongUrl } from "@/app/_data/songMetadata";
 
+import Header from "@/app/_components/Header";
+
 const PageJoin = () => {
   const RETARD_GOSSANT_ESTI = 200;
   const router = useRouter();
@@ -86,21 +88,21 @@ const PageJoin = () => {
     if (music) {
       try {
         music.stop();
-      } catch {}
+      } catch { }
       music.disconnect();
     }
 
     if (voice) {
       try {
         voice.stop();
-      } catch {}
+      } catch { }
       voice.disconnect();
     }
 
     mixSourcesRef.current = { music: null, voice: null };
 
     if (mixContextRef.current) {
-      await mixContextRef.current.close().catch(() => {});
+      await mixContextRef.current.close().catch(() => { });
       mixContextRef.current = null;
     }
 
@@ -249,7 +251,7 @@ const PageJoin = () => {
       }
 
       if (audioContextRef.current) {
-        audioContextRef.current.close().catch(() => {});
+        audioContextRef.current.close().catch(() => { });
         audioContextRef.current = null;
       }
 
@@ -452,6 +454,7 @@ const PageJoin = () => {
 
   return (
     <>
+      <Header />
       <div className="record-page">
         <section className="record-main">
           <div className="record-left">
