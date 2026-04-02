@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import { SONGS, getSongUrl } from "@/app/_data/songMetadata";
 
+import Header from "@/app/_components/Header";
+
 const PageRecord = () => {
   const router = useRouter();
   const RETARD_GOSSANT_ESTI = 200;
@@ -73,21 +75,21 @@ const PageRecord = () => {
     if (music) {
       try {
         music.stop();
-      } catch {}
+      } catch { }
       music.disconnect();
     }
 
     if (voice) {
       try {
         voice.stop();
-      } catch {}
+      } catch { }
       voice.disconnect();
     }
 
     mixSourcesRef.current = { music: null, voice: null };
 
     if (mixContextRef.current) {
-      await mixContextRef.current.close().catch(() => {});
+      await mixContextRef.current.close().catch(() => { });
       mixContextRef.current = null;
     }
 
@@ -236,7 +238,7 @@ const PageRecord = () => {
       }
 
       if (audioContextRef.current) {
-        audioContextRef.current.close().catch(() => {});
+        audioContextRef.current.close().catch(() => { });
         audioContextRef.current = null;
       }
 
@@ -446,7 +448,7 @@ const PageRecord = () => {
     }
     musicRef.current.src = getSongUrl(song);
     musicRef.current.currentTime = 0;
-    musicRef.current.play().catch(() => {});
+    musicRef.current.play().catch(() => { });
     setPreviewingCard(song);
   };
 
@@ -460,6 +462,7 @@ const PageRecord = () => {
   if (step === "choose") {
     return (
       <>
+        <Header />
         <div className="record-choose-page">
           <audio ref={musicRef} preload="auto" hidden />
           <h1 className="choose-title">Choisis une chanson</h1>
@@ -499,93 +502,94 @@ const PageRecord = () => {
 
   return (
     <>
-    <div className="record-page">
-      <section className="record-main">
-        <div className="record-left">
-          <div className="mic-stage">
-            {countdown && <div className="countdown-overlay">{countdown}</div>}
+      <Header />
+      <div className="record-page">
+        <section className="record-main">
+          <div className="record-left">
+            <div className="mic-stage">
+              {countdown && <div className="countdown-overlay">{countdown}</div>}
 
-            <button
-              className={`mic-toggle ${isRecording ? "recording" : ""}`}
-              id="micr"
-              onClick={handleButtonClick}
-              disabled={countdown !== null}
-            >
-              <span className="material-icons">
-                {isRecording ? "stop" : "mic"}
-              </span>
-            </button>
-          </div>
-
-          <audio ref={audioRef} hidden />
-          <audio ref={musicRef} preload="auto" hidden />
-
-          <div className="record-actions">
-            {audioBlob && !isRecording && (
               <button
-                className="publish-button"
-                type="button"
-                onClick={isMixPlaying ? handleStopMix : handlePlayMix}
+                className={`mic-toggle ${isRecording ? "recording" : ""}`}
+                id="micr"
+                onClick={handleButtonClick}
+                disabled={countdown !== null}
               >
-                Écoute ta version
+                <span className="material-icons">
+                  {isRecording ? "stop" : "mic"}
+                </span>
               </button>
-            )}
-
-            {audioBlob && !isRecording && (
-              <button
-                className="publish-button"
-                type="button"
-                onClick={handlePublish}
-                disabled={isUploading}
-              >
-                Publier
-              </button>
-            )}
-          </div>
-        </div>
-
-        <div className="record-right">
-          <div className="lyrics-box">
-            <div className="lyrics-header">
-              <div>
-                <p className="lyrics-song-label">Chanson choisie</p>
-                <h2>{currentSong.title}</h2>
-              </div>
-              <div className="lyrics-song-controls">
-                <button
-                  type="button"
-                  className="music-control-button"
-                  onClick={handleToggleSongPreview}
-                  disabled={isRecording || isMixPlaying}
-                  aria-label={isSongPreviewPlaying ? "Pause preview" : "Play preview"}
-                >
-                  <span className="material-icons">
-                    {isSongPreviewPlaying ? "pause" : "play_arrow"}
-                  </span>
-                </button>
-                <button
-                  type="button"
-                  className="change-song-btn"
-                  onClick={() => {
-                    if (isSongPreviewPlaying && musicRef.current) musicRef.current.pause();
-                    setIsSongPreviewPlaying(false);
-                    setStep("choose");
-                  }}
-                  disabled={isRecording}
-                >
-                  Changer
-                </button>
-              </div>
             </div>
-            <div className="lyrics-content">
-              {currentSong.lyrics.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
+
+            <audio ref={audioRef} hidden />
+            <audio ref={musicRef} preload="auto" hidden />
+
+            <div className="record-actions">
+              {audioBlob && !isRecording && (
+                <button
+                  className="publish-button"
+                  type="button"
+                  onClick={isMixPlaying ? handleStopMix : handlePlayMix}
+                >
+                  Écoute ta version
+                </button>
+              )}
+
+              {audioBlob && !isRecording && (
+                <button
+                  className="publish-button"
+                  type="button"
+                  onClick={handlePublish}
+                  disabled={isUploading}
+                >
+                  Publier
+                </button>
+              )}
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+
+          <div className="record-right">
+            <div className="lyrics-box">
+              <div className="lyrics-header">
+                <div>
+                  <p className="lyrics-song-label">Chanson choisie</p>
+                  <h2>{currentSong.title}</h2>
+                </div>
+                <div className="lyrics-song-controls">
+                  <button
+                    type="button"
+                    className="music-control-button"
+                    onClick={handleToggleSongPreview}
+                    disabled={isRecording || isMixPlaying}
+                    aria-label={isSongPreviewPlaying ? "Pause preview" : "Play preview"}
+                  >
+                    <span className="material-icons">
+                      {isSongPreviewPlaying ? "pause" : "play_arrow"}
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    className="change-song-btn"
+                    onClick={() => {
+                      if (isSongPreviewPlaying && musicRef.current) musicRef.current.pause();
+                      setIsSongPreviewPlaying(false);
+                      setStep("choose");
+                    }}
+                    disabled={isRecording}
+                  >
+                    Changer
+                  </button>
+                </div>
+              </div>
+              <div className="lyrics-content">
+                {currentSong.lyrics.map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </>
   );
 };
