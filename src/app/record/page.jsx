@@ -4,7 +4,7 @@
 "use client";
 
 import "./record.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import { SONGS, SONG_GROUPS, getSongUrl } from "@/app/_data/songMetadata";
@@ -13,7 +13,7 @@ import Header from "@/app/_components/Header";
 
 const PageRecord = () => {
   const router = useRouter();
-  const RETARD_GOSSANT_ESTI = 100;
+  const RETARD_GOSSANT_ESTI = 150;
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
   const [songChoice, setSongChoice] = useState("chanson1_v1");
@@ -34,6 +34,64 @@ const PageRecord = () => {
   const [step, setStep] = useState("choose");
   const [previewingCard, setPreviewingCard] = useState(null);
   const currentSong = SONGS[songChoice];
+
+  useEffect(() => {
+    return () => {
+      if (musicRef.current) {
+        musicRef.current.pause();
+        musicRef.current.currentTime = 0;
+        musicRef.current.src = "";
+      }
+
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        audioRef.current.src = "";
+      }
+
+      if (musicElementRef.current) {
+        musicElementRef.current.pause();
+        musicElementRef.current.currentTime = 0;
+        musicElementRef.current.src = "";
+        musicElementRef.current = null;
+      }
+
+      if (micStreamRef.current) {
+        micStreamRef.current.getTracks().forEach((track) => track.stop());
+        micStreamRef.current = null;
+      }
+
+      if (musicSourceRef.current) {
+        musicSourceRef.current.disconnect();
+        musicSourceRef.current = null;
+      }
+
+      if (audioContextRef.current) {
+        audioContextRef.current.close().catch(() => { });
+        audioContextRef.current = null;
+      }
+
+      const { music, voice } = mixSourcesRef.current;
+      if (music) {
+        try {
+          music.stop();
+        } catch { }
+        music.disconnect();
+      }
+      if (voice) {
+        try {
+          voice.stop();
+        } catch { }
+        voice.disconnect();
+      }
+      mixSourcesRef.current = { music: null, voice: null };
+
+      if (mixContextRef.current) {
+        mixContextRef.current.close().catch(() => { });
+        mixContextRef.current = null;
+      }
+    };
+  }, []);
 
   const runCountdown = async () => {
     setCountdown(3);

@@ -36,6 +36,64 @@ const PageJoin = () => {
   const currentSong = SONGS[songChoice] ?? SONGS.chanson1;
 
   useEffect(() => {
+    return () => {
+      if (musicRef.current) {
+        musicRef.current.pause();
+        musicRef.current.currentTime = 0;
+        musicRef.current.src = "";
+      }
+
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        audioRef.current.src = "";
+      }
+
+      if (musicElementRef.current) {
+        musicElementRef.current.pause();
+        musicElementRef.current.currentTime = 0;
+        musicElementRef.current.src = "";
+        musicElementRef.current = null;
+      }
+
+      if (micStreamRef.current) {
+        micStreamRef.current.getTracks().forEach((track) => track.stop());
+        micStreamRef.current = null;
+      }
+
+      if (musicSourceRef.current) {
+        musicSourceRef.current.disconnect();
+        musicSourceRef.current = null;
+      }
+
+      if (audioContextRef.current) {
+        audioContextRef.current.close().catch(() => { });
+        audioContextRef.current = null;
+      }
+
+      const { music, voice } = mixSourcesRef.current;
+      if (music) {
+        try {
+          music.stop();
+        } catch { }
+        music.disconnect();
+      }
+      if (voice) {
+        try {
+          voice.stop();
+        } catch { }
+        voice.disconnect();
+      }
+      mixSourcesRef.current = { music: null, voice: null };
+
+      if (mixContextRef.current) {
+        mixContextRef.current.close().catch(() => { });
+        mixContextRef.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     const loadDuel = async () => {
       if (!duelId) return;
       const res = await fetch(`/api/recordings?duelId=${duelId}`);

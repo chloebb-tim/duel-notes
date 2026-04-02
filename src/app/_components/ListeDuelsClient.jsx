@@ -118,10 +118,16 @@ const DuelIncompletCard = ({ duel, activePlaybackKey, setActivePlaybackKey }) =>
   const stopMix = (recordingId) => {
     const mix = mixRefs.current[recordingId];
     if (!mix) return;
+    mix.voice.onended = null;
+    mix.music.onended = null;
     mix.voice.pause();
     mix.voice.currentTime = 0;
+    mix.voice.removeAttribute("src");
+    mix.voice.load();
     mix.music.pause();
     mix.music.currentTime = 0;
+    mix.music.removeAttribute("src");
+    mix.music.load();
   };
 
   const stopAllMixes = () => {
