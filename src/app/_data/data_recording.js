@@ -71,11 +71,37 @@ export async function enregistrerNouveau({
 }
 
 export async function getDuelsIncomplets() {
-  return db
-    .select()
-    .from(duelsTable)
-    .where(isNull(duelsTable.chanteur2id))
-    .orderBy(desc(duelsTable.id));
+  const duels = await db.query.duelsTable.findMany({
+    where: isNull(duelsTable.chanteur2id),
+    orderBy: desc(duelsTable.id),
+    with: {
+      premierChanteur: true,
+    },
+  });
+
+  const duelsAvecNoms = await Promise.all(
+    duels.map(async (duel) => {
+      const user1 = duel.premierChanteur
+        ? await db
+            .select({ name: user.name })
+            .from(user)
+            .where(eq(user.id, duel.premierChanteur.userId))
+            .limit(1)
+        : [];
+
+      return {
+        ...duel,
+        premierChanteur: duel.premierChanteur
+          ? {
+              ...duel.premierChanteur,
+              userName: user1[0]?.name ?? duel.premierChanteur.userId ?? "Inconnu",
+            }
+          : null,
+      };
+    })
+  );
+
+  return duelsAvecNoms;
 }
 
 export async function getDuelscomplets() {
