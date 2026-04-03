@@ -4,7 +4,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import "./record.css";
+import "../record/record.css";
 import { useState, useRef, useEffect, Suspense } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { SONGS, getSongUrl } from "@/app/_data/songMetadata";
@@ -12,7 +12,7 @@ import { SONGS, getSongUrl } from "@/app/_data/songMetadata";
 import Header from "@/app/_components/Header";
 
 const PageJoin = () => {
-  const RETARD_GOSSANT_ESTI = 150;
+  const RETARD_GOSSANT_ESTI = 200;
   const router = useRouter();
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
