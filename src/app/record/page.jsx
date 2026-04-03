@@ -368,8 +368,11 @@ const PageRecord = () => {
 
     setIsUploading(true);
     try {
-      const file = new File([audioBlob], `recording-${Date.now()}.wav`, {
-        type: "audio/wav",
+      const recordingMimeType = audioBlob.type || "audio/webm";
+      const recordingExtension = recordingMimeType.includes("ogg") ? "ogg" : "webm";
+
+      const file = new File([audioBlob], `recording-${Date.now()}.${recordingExtension}`, {
+        type: recordingMimeType,
       });
 
       const formData = new FormData();

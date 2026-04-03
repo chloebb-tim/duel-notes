@@ -7,6 +7,8 @@ import { toast, ToastContainer } from "react-toastify";
 import { getSongTitle, getSongUrl } from "@/app/_data/songMetadata";
 import { gsap } from "gsap";
 
+const MIX_SYNC_OFFSET_MS = 200;
+
 const getDisplayName = (recording) => {
   const name = recording?.userName?.trim();
   return name || recording?.userId || "Inconnu";
@@ -118,6 +120,10 @@ const DuelIncompletCard = ({ duel, activePlaybackKey, setActivePlaybackKey }) =>
   const stopMix = (recordingId) => {
     const mix = mixRefs.current[recordingId];
     if (!mix) return;
+    if (mix.musicStartTimeoutId) {
+      window.clearTimeout(mix.musicStartTimeoutId);
+      mix.musicStartTimeoutId = null;
+    }
     mix.voice.onended = null;
     mix.music.onended = null;
     mix.voice.pause();
@@ -156,7 +162,7 @@ const DuelIncompletCard = ({ duel, activePlaybackKey, setActivePlaybackKey }) =>
       voice.preload = "none";
       music.volume = 0.75;
       voice.volume = 1;
-      mixRefs.current[chanteur.id] = { voice, music };
+      mixRefs.current[chanteur.id] = { voice, music, musicStartTimeoutId: null };
     }
 
     const currentMix = mixRefs.current[chanteur.id];
@@ -182,7 +188,14 @@ const DuelIncompletCard = ({ duel, activePlaybackKey, setActivePlaybackKey }) =>
 
     try {
       if (songUrl) {
-        await Promise.all([currentMix.music.play(), currentMix.voice.play()]);
+        await currentMix.voice.play();
+        currentMix.musicStartTimeoutId = window.setTimeout(async () => {
+          try {
+            await currentMix.music.play();
+          } catch (error) {
+            console.error("Lecture musique impossible:", error);
+          }
+        }, MIX_SYNC_OFFSET_MS);
       } else {
         await currentMix.voice.play();
       }
