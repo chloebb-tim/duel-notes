@@ -6,6 +6,32 @@ import { getSongTitle, getSongUrl } from "@/app/_data/songMetadata";
 
 const MIX_SYNC_OFFSET_MS = 200;
 
+const waitForCanPlay = (audio) =>
+    new Promise((resolve, reject) => {
+        if (audio.readyState >= 3) {
+            resolve();
+            return;
+        }
+
+        const onCanPlay = () => {
+            cleanup();
+            resolve();
+        };
+
+        const onError = () => {
+            cleanup();
+            reject(new Error("Audio failed to load"));
+        };
+
+        const cleanup = () => {
+            audio.removeEventListener("canplay", onCanPlay);
+            audio.removeEventListener("error", onError);
+        };
+
+        audio.addEventListener("canplay", onCanPlay, { once: true });
+        audio.addEventListener("error", onError, { once: true });
+    });
+
 const getDisplayName = (recording) => {
     const name = recording?.userName?.trim();
     return name || recording?.userId || "Inconnu";
@@ -97,8 +123,8 @@ const DuelCard = ({ duel, monVoteInitial, activePlaybackKey, setActivePlaybackKe
         if (!mixRefs.current[chanteur.id]) {
             const voice = new Audio();
             const music = new Audio();
-            music.preload = "none";
-            voice.preload = "none";
+            music.preload = "auto";
+            voice.preload = "auto";
             music.volume = 0.75;
             voice.volume = 1;
             mixRefs.current[chanteur.id] = { voice, music, musicStartTimeoutId: null };
@@ -107,10 +133,12 @@ const DuelCard = ({ duel, monVoteInitial, activePlaybackKey, setActivePlaybackKe
         const currentMix = mixRefs.current[chanteur.id];
         currentMix.voice.src = chanteur.voiceUrl;
         currentMix.voice.currentTime = 0;
+        currentMix.voice.load();
 
         if (songUrl) {
             currentMix.music.src = songUrl;
             currentMix.music.currentTime = 0;
+            currentMix.music.load();
         }
 
         const clearIfCurrent = () => {
@@ -127,6 +155,7 @@ const DuelCard = ({ duel, monVoteInitial, activePlaybackKey, setActivePlaybackKe
 
         try {
             if (songUrl) {
+                await Promise.all([waitForCanPlay(currentMix.voice), waitForCanPlay(currentMix.music)]);
                 await currentMix.voice.play();
                 currentMix.musicStartTimeoutId = window.setTimeout(async () => {
                     try {
@@ -136,6 +165,7 @@ const DuelCard = ({ duel, monVoteInitial, activePlaybackKey, setActivePlaybackKe
                     }
                 }, MIX_SYNC_OFFSET_MS);
             } else {
+                await waitForCanPlay(currentMix.voice);
                 await currentMix.voice.play();
             }
             setPlayingRecordingId(chanteur.id);
