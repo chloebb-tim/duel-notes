@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { getSongTitle, getSongUrl } from "@/app/_data/songMetadata";
 
 const MIX_SYNC_OFFSET_MS = 200;
+const SONG_MIX_VOLUME = 0.55;
 
 const waitForCanPlay = (audio) =>
     new Promise((resolve, reject) => {
@@ -125,7 +126,7 @@ const DuelCard = ({ duel, monVoteInitial, activePlaybackKey, setActivePlaybackKe
             const music = new Audio();
             music.preload = "auto";
             voice.preload = "auto";
-            music.volume = 0.75;
+            music.volume = SONG_MIX_VOLUME;
             voice.volume = 1;
             mixRefs.current[chanteur.id] = { voice, music, musicStartTimeoutId: null };
         }

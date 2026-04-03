@@ -14,6 +14,7 @@ import Header from "@/app/_components/Header";
 const PageRecord = () => {
   const router = useRouter();
   const RETARD_GOSSANT_ESTI = 200;
+  const SONG_MIX_VOLUME = 0.55;
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
   const [songChoice, setSongChoice] = useState("chanson1_v1");
@@ -260,7 +261,7 @@ const PageRecord = () => {
     musicSourceRef.current = source;
 
     const musicGain = audioContext.createGain();
-    musicGain.gain.value = 1.0;
+    musicGain.gain.value = SONG_MIX_VOLUME;
 
     source.connect(musicGain).connect(audioContext.destination);
 
@@ -327,7 +328,7 @@ const PageRecord = () => {
       voiceSource.buffer = voiceBuffer;
 
       const songGain = mixContext.createGain();
-      songGain.gain.value = 0.75;
+      songGain.gain.value = SONG_MIX_VOLUME;
       const voiceGain = mixContext.createGain();
       voiceGain.gain.value = 1;
 
